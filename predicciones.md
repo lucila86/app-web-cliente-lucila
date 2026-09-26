@@ -1,0 +1,1 @@
+1. Creo el esqueleto básico de HTML para el index.html.

@@ -1,105 +1,300 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-AR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Catálogo de productos Apple: MacBook, iPhone, iPad, Apple Watch y más.">
-    <title>Apple Store | Catálogo de Productos</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="miu miu | Carteras de cuero genuino hechas a mano: bandoleras, carteras de mano, monederos y carteras de viaje.">
+    <title>miu miu | Carteras de cuero</title>
+
+    <!--
+        Esta es la estructura base, todavia sin estilos.
+        El CSS entra mas adelante en style.css (punto 4 de Predictions.md):
+        <link rel="stylesheet" href="style.css">
+    -->
 </head>
 <body>
 
-    <input type="checkbox" id="menu-toggle" class="menu-toggle" tabindex="-1" aria-hidden="true">
-
+    <!-- ==================== ENCABEZADO ==================== -->
     <header class="site-header">
-        <img src="./img/logo.png" alt="Apple Logo" width="40">
-        <h1><a href="index.html">Apple Store</a></h1>
-        <label for="menu-toggle" class="hamburger" aria-label="Abrir o cerrar menú de navegación">
-            <span></span>
-            <span></span>
-            <span></span>
-        </label>
-    </header>
+        <p class="site-header__marca">
+            <a href="index.html" aria-label="miu miu, ir al inicio">miu miu</a>
+        </p>
 
-    <nav class="navbar" aria-label="Navegación principal">
-        <ul>
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="index.html#catalogo">Catálogo</a></li>
-            <li><a href="carrito.html">Carrito</a></li>
-            <li><a href="contacto.html">Contacto</a></li>
-        </ul>
-    </nav>
-
-    <div class="search-bar">
-        <form role="search" method="get" action="#catalogo" aria-label="Buscador de productos">
-            <label for="buscar">Buscar productos</label>
-            <input type="search" id="buscar" name="buscar" placeholder="Buscar productos… Ej: iPhone, MacBook, iPad" autocomplete="off">
-            <button type="submit">Buscar</button>
-        </form>
-    </div>
-
-    <main id="inicio">
-
-        <aside class="sidebar" aria-label="Filtros de productos">
-            <input type="checkbox" id="filtros-toggle" class="filtros-toggle" tabindex="-1" aria-hidden="true">
-            <label for="filtros-toggle" class="filtros-boton" aria-label="Mostrar u ocultar filtros">
-                Filtros <span class="flecha" aria-hidden="true"></span>
-            </label>
-            <div class="filtros-contenido">
-            <h2>Categorías</h2>
-            <nav aria-label="Filtros de productos">
-                <ul>
-                    <li><a href="#catalogo">Todos los productos</a></li>
-                    <li><a href="#macbook">MacBook</a></li>
-                    <li><a href="#iphone">iPhone</a></li>
-                    <li><a href="#ipad">iPad</a></li>
-                    <li><a href="#watch">Apple Watch</a></li>
-                    <li><a href="#airpods">AirPods</a></li>
-                    <li><a href="#accesorios">Accesorios</a></li>
-                </ul>
-            </nav>
-
-            <form class="filtros" method="get" action="#catalogo" aria-label="Filtros de precio y envío">
-                <fieldset>
-                    <legend>Precio</legend>
-                    <label for="precio-min">Precio mínimo</label>
-                    <input type="number" id="precio-min" name="precio-min" min="0" step="1000" placeholder="Mín. Ej: 100000">
-                    <label for="precio-max">Precio máximo</label>
-                    <input type="number" id="precio-max" name="precio-max" min="0" step="1000" placeholder="Máx. Ej: 1500000">
-                </fieldset>
-                <fieldset>
-                    <legend>Envío</legend>
-                    <label class="check-envio" for="envio-gratis">
-                        <input type="checkbox" id="envio-gratis" name="envio" value="gratis">
-                        Envío gratuito
-                    </label>
-                </fieldset>
-                <button type="submit">Aplicar filtros</button>
-            </form>
-            </div>
-        </aside>
-
-        <section id="catalogo" aria-label="Catálogo de productos">
-            <h2>Catálogo de productos</h2>
-
-            <div class="productos" id="productos">
-            </div>
-
-        </section>
-
-    </main>
-
-    <footer id="contacto">
-        <p>&copy; 2026 Apple Store. Todos los derechos reservados.</p>
-        <nav aria-label="Redes sociales">
+        <nav class="site-header__nav" aria-label="Navegación principal">
             <ul>
-                <li><a href="https://instagram.com/apple" rel="noopener noreferrer" target="_blank">Instagram</a></li>
-                <li><a href="https://x.com/apple" rel="noopener noreferrer" target="_blank">X (Twitter)</a></li>
-                <li><a href="https://youtube.com/apple" rel="noopener noreferrer" target="_blank">YouTube</a></li>
+                <li><a href="index.html" aria-current="page">Inicio</a></li>
+                <li><a href="#catalogo">Catálogo</a></li>
+                <li><a href="carrito.html">Carrito</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
             </ul>
         </nav>
+
+        <!-- role="search" le avisa al lector de pantalla que este formulario es un buscador -->
+        <form class="site-header__buscador" role="search" method="get" action="#catalogo" aria-label="Buscar carteras">
+            <label for="buscar">Buscar carteras</label>
+            <input type="search" id="buscar" name="q" placeholder="Ej: bandolera de cuero" autocomplete="off">
+            <button type="submit">Buscar</button>
+        </form>
+    </header>
+
+    <!-- ==================== CONTENIDO PRINCIPAL ==================== -->
+    <main>
+
+        <!-- Presentacion de la tienda -->
+        <section class="hero" aria-labelledby="titulo-principal">
+            <h1 id="titulo-principal">Carteras de cuero genuino, hechas a mano</h1>
+            <p>
+                Cada pieza se corta, cose y termina en nuestro taller. Elegí tu cartera por tipo,
+                filtrá por precio y encontrá la que te acompaña todos los días.
+            </p>
+            <p><a href="#catalogo">Ver el catálogo</a></p>
+        </section>
+
+        <!-- Catalogo: filtros a la izquierda, productos al centro -->
+        <div class="catalogo">
+
+            <!-- ---------- SECCION DE FILTROS ---------- -->
+            <aside class="filtros" aria-labelledby="titulo-filtros">
+                <h2 id="titulo-filtros">Filtrar carteras</h2>
+
+                <form class="filtros__form" method="get" action="#catalogo" aria-labelledby="titulo-filtros">
+
+                    <fieldset>
+                        <legend>Tipo de cartera</legend>
+                        <ul>
+                            <li>
+                                <input type="checkbox" id="tipo-bandolera" name="tipo" value="bandolera" checked>
+                                <label for="tipo-bandolera">Bandolera / crossbody</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="tipo-mano" name="tipo" value="mano" checked>
+                                <label for="tipo-mano">De mano</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="tipo-monederos" name="tipo" value="monederos" checked>
+                                <label for="tipo-monederos">Monederos</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="tipo-viaje" name="tipo" value="viaje" checked>
+                                <label for="tipo-viaje">De viaje / weekend</label>
+                            </li>
+                        </ul>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Precio</legend>
+                        <p>
+                            <label for="precio-min">Precio mínimo</label>
+                            <input type="number" id="precio-min" name="precio-min" min="0" step="1000" placeholder="Ej: 20000">
+                        </p>
+                        <p>
+                            <label for="precio-max">Precio máximo</label>
+                            <input type="number" id="precio-max" name="precio-max" min="0" step="1000" placeholder="Ej: 90000">
+                        </p>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Material</legend>
+                        <p>
+                            <input type="radio" id="material-todos" name="material" value="todos" checked>
+                            <label for="material-todos">Todos</label>
+                        </p>
+                        <p>
+                            <input type="radio" id="material-cuero" name="material" value="cuero">
+                            <label for="material-cuero">Cuero genuino</label>
+                        </p>
+                        <p>
+                            <input type="radio" id="material-vegano" name="material" value="vegano">
+                            <label for="material-vegano">Vegano</label>
+                        </p>
+                    </fieldset>
+
+                    <p>
+                        <label for="orden">Ordenar por</label>
+                        <select id="orden" name="orden">
+                            <option value="relevancia">Relevancia</option>
+                            <option value="precio-asc">Precio: de menor a mayor</option>
+                            <option value="precio-desc">Precio: de mayor a menor</option>
+                            <option value="nombre">Nombre (A - Z)</option>
+                        </select>
+                    </p>
+
+                    <button type="submit">Aplicar filtros</button>
+                    <button type="reset">Limpiar filtros</button>
+                </form>
+            </aside>
+
+            <!-- ---------- PRODUCTOS ---------- -->
+            <section id="catalogo" class="catalogo__listado" aria-labelledby="titulo-catalogo">
+                <h2 id="titulo-catalogo">Nuestras carteras</h2>
+                <p class="catalogo__conteo">8 carteras para mostrar</p>
+
+                <ul class="productos">
+
+                    <!-- Bandolera / crossbody -->
+                    <li>
+                        <article class="producto">
+                            <!-- Cuando tengas las fotos, reemplazar el div de abajo por:
+                                 <img src="img/bandolera-roma.jpg" alt="Bandolera Roma de cuero café"> -->
+                            <figure class="producto__imagen">
+                                <div class="producto__placeholder" role="img"
+                                    aria-label="Foto de la bandolera Roma de cuero color café"></div>
+                            </figure>
+                            <h3 class="producto__nombre">Bandolera Roma</h3>
+                            <p class="producto__tipo">Bandolera / crossbody</p>
+                            <p class="producto__precio">$45.000</p>
+                            <p class="producto__descripcion">Correa regulable y compartimentos con cierre cremallera. Cuero Vacuno.</p>
+                            <a href="producto.html">Ver detalle</a>
+                        </article>
+                    </li>
+
+                    <li>
+                        <article class="producto">
+                            <figure class="producto__imagen">
+                                <div class="producto__placeholder" role="img"
+                                    aria-label="Foto de la bandolera Firenze de cuero color negro"></div>
+                            </figure>
+                            <h3 class="producto__nombre">Bandolera Firenze</h3>
+                            <p class="producto__tipo">Bandolera / crossbody</p>
+                            <p class="producto__precio">$52.000</p>
+                            <p class="producto__descripcion">Formato compacto, ideal para salir. Cuero Vacuno con forro de algodón.</p>
+                            <a href="producto.html">Ver detalle</a>
+                        </article>
+                    </li>
+
+                    <!-- De mano -->
+                    <li>
+                        <article class="producto">
+                            <figure class="producto__imagen">
+                                <div class="producto__placeholder" role="img"
+                                    aria-label="Foto de la cartera de mano Amsterdam de color terracota"></div>
+                            </figure>
+                            <h3 class="producto__nombre">Cartera de mano Amsterdam</h3>
+                            <p class="producto__tipo">De mano</p>
+                            <p class="producto__precio">$38.000</p>
+                            <p class="producto__descripcion">Estructura rígida que se mantiene de pie. Cuero Vacuno repujado.</p>
+                            <a href="producto.html">Ver detalle</a>
+                        </article>
+                    </li>
+
+                    <li>
+                        <article class="producto">
+                            <figure class="producto__imagen">
+                                <div class="producto__placeholder" role="img"
+                                    aria-label="Foto de la clutch Verona de cuero color vino"></div>
+                            </figure>
+                            <h3 class="producto__nombre">Clutch Verona</h3>
+                            <p class="producto__tipo">De mano</p>
+                            <p class="producto__precio">$33.500</p>
+                            <p class="producto__descripcion">Para la noche o para llevar lo justo. Cierre magnético y bolsillo para bills.</p>
+                            <a href="producto.html">Ver detalle</a>
+                        </article>
+                    </li>
+
+                    <!-- Monederos -->
+                    <li>
+                        <article class="producto">
+                            <figure class="producto__imagen">
+                                <div class="producto__placeholder" role="img"
+                                    aria-label="Foto del monedero Milan de cuero color avellana"></div>
+                            </figure>
+                            <h3 class="producto__nombre">Monedero Milan</h3>
+                            <p class="producto__tipo">Monederos</p>
+                            <p class="producto__precio">$18.000</p>
+                            <p class="producto__descripcion">Para billetes, monedas y tarjetas. Compacto, con cierre cremallera.</p>
+                            <a href="producto.html">Ver detalle</a>
+                        </article>
+                    </li>
+
+                    <li>
+                        <article class="producto">
+                            <figure class="producto__imagen">
+                                <div class="producto__placeholder" role="img"
+                                    aria-label="Foto del monedero Osaka en material vegano color verde oliva"></div>
+                            </figure>
+                            <h3 class="producto__nombre">Monedero Osaka</h3>
+                            <p class="producto__tipo">Monederos</p>
+                            <p class="producto__precio">$21.500</p>
+                            <p class="producto__descripcion">Costuras reforzadas y tres compartimentos. Material vegano impermeable.</p>
+                            <a href="producto.html">Ver detalle</a>
+                        </article>
+                    </li>
+
+                    <!-- De viaje / weekend -->
+                    <li>
+                        <article class="producto">
+                            <figure class="producto__imagen">
+                                <div class="producto__placeholder" role="img"
+                                    aria-label="Foto de la cartera de viaje Sydney de cuero color caqui"></div>
+                            </figure>
+                            <h3 class="producto__nombre">Cartera de viaje Sydney</h3>
+                            <p class="producto__tipo">De viaje / weekend</p>
+                            <p class="producto__precio">$89.000</p>
+                            <p class="producto__descripcion">Amplia y con compartimento interior cierre cremallera. Cuero Vacuno.</p>
+                            <a href="producto.html">Ver detalle</a>
+                        </article>
+                    </li>
+
+                    <li>
+                        <article class="producto">
+                            <figure class="producto__imagen">
+                                <div class="producto__placeholder" role="img"
+                                    aria-label="Foto del weekend bag Toronto de color negro"></div>
+                            </figure>
+                            <h3 class="producto__nombre">Weekend bag Toronto</h3>
+                            <p class="producto__tipo">De viaje / weekend</p>
+                            <p class="producto__precio">$95.000</p>
+                            <p class="producto__descripcion">Para un finde largo o un viaje. Dos asas y bolsillo trasero con cremallera.</p>
+                            <a href="producto.html">Ver detalle</a>
+                        </article>
+                    </li>
+
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <!-- ==================== PIE DE PAGINA ==================== -->
+    <footer class="site-footer">
+
+        <section class="site-footer__contacto" aria-labelledby="titulo-contacto">
+            <h2 id="titulo-contacto">Contacto</h2>
+            <address>
+                <p>miu miu · Taller en Zapatería 1234, Rosario, Santa Fe</p>
+                <p><a href="tel:+54341000000">341 000-0000</a></p>
+                <p><a href="mailto:hola@miumiu.com.ar">hola@miumiu.com.ar</a></p>
+            </address>
+        </section>
+
+        <nav class="site-footer__links" aria-label="Enlaces del pie de página">
+            <h2>Información</h2>
+            <ul>
+                <li><a href="contacto.html">Sobre nosotros</a></li>
+                <li><a href="producto.html">Guía de talles</a></li>
+                <li><a href="producto.html">Envíos y devoluciones</a></li>
+                <li><a href="contacto.html">Preguntas frecuentes</a></li>
+            </ul>
+        </nav>
+
+        <form class="site-footer__newsletter" aria-label="Suscripción al newsletter">
+            <h2>Novedades</h2>
+            <p>
+                <label for="email-newsletter">Tu correo electrónico</label>
+                <input type="email" id="email-newsletter" name="email" placeholder="nombre@correo.com" autocomplete="email" required>
+            </p>
+            <button type="submit">Suscribirme</button>
+        </form>
+
+        <nav class="site-footer__redes" aria-label="Redes sociales">
+            <h2>Seguinos</h2>
+            <ul>
+                <li><a href="https://instagram.com/miumiu" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+                <li><a href="https://x.com/miumiu" target="_blank" rel="noopener noreferrer">X (Twitter)</a></li>
+            </ul>
+        </nav>
+
+        <p class="site-footer__legal">&copy; 2026 miu miu. Todos los derechos reservados.</p>
     </footer>
 
-<script src="script.js"></script>
 </body>
 </html>
