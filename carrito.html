@@ -1,151 +1,177 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-AR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Tu carrito de compras con los productos seleccionados para finalizar la compra.">
-    <title>Carrito de Compras | Apple Store</title>
+    <meta name="description" content="Carrito de compra de miu miu: revisá los productos que agregaste, ajustá las cantidades y finalizá tu compra.">
+    <title>miu miu | Tu carrito</title>
+
+    <!-- Maquetado en style.css -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <input type="checkbox" id="menu-toggle" class="menu-toggle" tabindex="-1" aria-hidden="true">
-
+    <!-- ==================== ENCABEZADO ==================== -->
     <header class="site-header">
-        <h1><a href="index.html">Apple Store</a></h1>
-        <label for="menu-toggle" class="hamburger" aria-label="Abrir o cerrar menú de navegación">
-            <span></span>
-            <span></span>
-            <span></span>
-        </label>
-    </header>
+        <p class="site-header__marca">
+            <a href="index.html" aria-label="miu miu, ir al inicio">miu miu</a>
+        </p>
 
-    <nav class="navbar" aria-label="Navegación principal">
-        <ul>
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="index.html#catalogo">Catálogo</a></li>
-            <li><a href="carrito.html">Carrito</a></li>
-            <li><a href="contacto.html">Contacto</a></li>
-        </ul>
-    </nav>
-
-    <main>
-        <nav aria-label="Ruta de navegación">
-            <ol>
+        <nav class="site-header__nav" aria-label="Navegación principal">
+            <ul>
                 <li><a href="index.html">Inicio</a></li>
                 <li><a href="index.html#catalogo">Catálogo</a></li>
-                <li aria-current="page">Carrito de compras</li>
-            </ol>
-        </nav>
-
-        <h2>Carrito de compras</h2>
-
-        <section aria-label="Productos en el carrito">
-            <h3>Productos agregados</h3>
-            <table aria-label="Lista de productos en el carrito">
-                <caption>Resumen de productos seleccionados</caption>
-                <thead>
-                    <tr>
-                        <th scope="col">Producto</th>
-                        <th scope="col">Precio</th>
-                        <th scope="col">Cantidad</th>
-                        <th scope="col">Subtotal</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">MacBook Air M3</th>
-                        <td>$1.199.000</td>
-                        <td>1</td>
-                        <td>$1.199.000</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">iPhone 15 Pro</th>
-                        <td>$1.599.000</td>
-                        <td>1</td>
-                        <td>$1.599.000</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">AirPods Pro 2</th>
-                        <td>$349.000</td>
-                        <td>2</td>
-                        <td>$698.000</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Apple Watch Series 9</th>
-                        <td>$549.000</td>
-                        <td>1</td>
-                        <td>$549.000</td>
-                    </tr>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <th scope="row" colspan="3">Total</th>
-                        <td>$4.045.000</td>
-                    </tr>
-                </tfoot>
-            </table>
-        </section>
-
-        <section aria-label="Formulario de datos para la compra">
-            <h3>Datos para finalizar la compra</h3>
-            <form action="#" method="post">
-                <fieldset>
-                    <legend>Información personal</legend>
-                    <label for="nombre">Nombre completo</label>
-                    <input type="text" id="nombre" name="nombre" required>
-
-                    <label for="email">Correo electrónico</label>
-                    <input type="email" id="email" name="email" required>
-
-                    <label for="telefono">Teléfono</label>
-                    <input type="tel" id="telefono" name="telefono">
-                </fieldset>
-
-                <fieldset>
-                    <legend>Dirección de envío</legend>
-                    <label for="direccion">Dirección</label>
-                    <input type="text" id="direccion" name="direccion" required>
-
-                    <label for="ciudad">Ciudad</label>
-                    <input type="text" id="ciudad" name="ciudad" required>
-
-                    <label for="codigo">Código postal</label>
-                    <input type="text" id="codigo" name="codigo" required>
-                </fieldset>
-
-                <fieldset>
-                    <legend>Método de pago</legend>
-                    <p>
-                        <input type="radio" id="tarjeta" name="pago" value="tarjeta" checked>
-                        <label for="tarjeta">Tarjeta de crédito o débito</label>
-                    </p>
-                    <p>
-                        <input type="radio" id="transferencia" name="pago" value="transferencia">
-                        <label for="transferencia">Transferencia bancaria</label>
-                    </p>
-                    <p>
-                        <input type="radio" id="efectivo" name="pago" value="efectivo">
-                        <label for="efectivo">Efectivo contra entrega</label>
-                    </p>
-                </fieldset>
-
-                <p><input type="submit" value="Finalizar compra"></p>
-                <p><a href="index.html#catalogo">&larr; Seguir comprando</a></p>
-            </form>
-        </section>
-    </main>
-
-    <footer id="contacto">
-        <p>&copy; 2026 Apple Store. Todos los derechos reservados.</p>
-        <nav aria-label="Redes sociales">
-            <ul>
-                <li><a href="https://instagram.com/apple" rel="noopener noreferrer" target="_blank">Instagram</a></li>
-                <li><a href="https://x.com/apple" rel="noopener noreferrer" target="_blank">X (Twitter)</a></li>
-                <li><a href="https://youtube.com/apple" rel="noopener noreferrer" target="_blank">YouTube</a></li>
+                <li><a href="carrito.html" aria-current="page">Carrito</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
             </ul>
         </nav>
+
+        <!-- role="search" le avisa al lector de pantalla que este formulario es un buscador -->
+        <form class="site-header__buscador" role="search" method="get" action="index.html#catalogo" aria-label="Buscar carteras">
+            <label for="buscar">Buscar carteras</label>
+            <input type="search" id="buscar" name="q" placeholder="Ej: bandolera de cuero" autocomplete="off">
+            <button type="submit">Buscar</button>
+        </form>
+    </header>
+
+    <!-- ==================== CONTENIDO PRINCIPAL ==================== -->
+    <main>
+
+        <h1 id="titulo-pagina">Tu carrito</h1>
+
+        <!--
+            La tabla la arma script.js a partir de lo que hay guardado en
+            localStorage: la primera vez arranca con CARRITO_INICIAL y después
+            conserva lo que vayas agregando. Por eso el <tbody> está vacío y
+            las filas las genera el script.
+        -->
+        <div class="carrito">
+
+            <!-- ---------- PRODUCTOS DEL CARRITO ---------- -->
+            <form class="carrito__form" method="get" action="carrito.html" aria-label="Actualizar los productos del carrito">
+                <noscript>
+                    <p class="carrito__aviso">El carrito se arma con JavaScript. Activalo para ver y modificar los productos.</p>
+                </noscript>
+
+                <table class="carrito__tabla">
+                    <caption id="carrito-conteo">Productos en tu carrito</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Producto</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Subtotal</th>
+                            <th scope="col">Quitar</th>
+                        </tr>
+                    </thead>
+                    <tbody id="carrito-items">
+                    </tbody>
+                </table>
+
+                <p>
+                    <button type="button" id="vaciar-carrito">Vaciar carrito</button>
+                    <a href="index.html#catalogo">Seguir comprando</a>
+                </p>
+            </form>
+
+            <!-- ---------- RESUMEN Y FINALIZACIÓN DE COMPRA ---------- -->
+            <aside class="carrito__resumen" aria-labelledby="titulo-resumen">
+                <h2 id="titulo-resumen">Resumen del pedido</h2>
+
+                <!--
+                    El botón "Finalizar compra" envía este formulario a checkout.html,
+                    que todavía no existe (es el punto 3 de Predictions.md). Sin un
+                    servidor o sin JS, el formulario simplemente recarga la página.
+                -->
+                <form class="carrito__checkout" method="post" action="checkout.html" aria-labelledby="titulo-resumen" id="carrito__checkout">
+
+                    <fieldset>
+                        <legend>Entrega</legend>
+                        <p>
+                            <input type="radio" id="entrega-domicilio" name="entrega" value="domicilio" checked>
+                            <label for="entrega-domicilio">Envío a domicilio</label>
+                        </p>
+                        <p>
+                            <input type="radio" id="entrega-taller" name="entrega" value="taller">
+                            <label for="entrega-taller">Retiro en el taller (sin cargo)</label>
+                        </p>
+                    </fieldset>
+
+                    <p>
+                        <label for="cupon">Código de descuento</label>
+                        <input type="text" id="cupon" name="cupon" placeholder="Ej: PRIMERA10" autocomplete="off">
+                    </p>
+
+                    <dl class="resumen__totales">
+                        <div>
+                            <dt>Subtotal (<span id="total-unidades">0</span> unidades)</dt>
+                            <dd id="total-subtotal">$0</dd>
+                        </div>
+                        <div>
+                            <dt>Descuento PRIMERA10</dt>
+                            <dd id="total-descuento">—</dd>
+                        </div>
+                        <div>
+                            <dt>Envío</dt>
+                            <dd id="total-envio">$0</dd>
+                        </div>
+                        <div>
+                            <dt>Total</dt>
+                            <dd id="total-total">$0</dd>
+                        </div>
+                    </dl>
+
+                    <button type="submit">Finalizar compra</button>
+                </form>
+
+                <p>Aceptamos tarjetas de crédito, débito y transferencia bancaria.</p>
+            </aside>
+        </div>
+    </main>
+
+    <!-- ==================== PIE DE PAGINA ==================== -->
+    <footer class="site-footer">
+
+        <section class="site-footer__contacto" aria-labelledby="titulo-contacto">
+            <h2 id="titulo-contacto">Contacto</h2>
+            <address>
+                <p>miu miu · Taller en Zapatería 1234, Rosario, Santa Fe</p>
+                <p><a href="tel:+54341000000">341 000-0000</a></p>
+                <p><a href="mailto:hola@miumiu.com.ar">hola@miumiu.com.ar</a></p>
+            </address>
+        </section>
+
+        <nav class="site-footer__links" aria-label="Enlaces del pie de página">
+            <h2>Información</h2>
+            <ul>
+                <li><a href="contacto.html">Sobre nosotros</a></li>
+                <li><a href="index.html#catalogo">Gu&iacute;a de medidas</a></li>
+                <li><a href="contacto.html">Env&iacute;os y devoluciones</a></li>
+                <li><a href="contacto.html">Preguntas frecuentes</a></li>
+            </ul>
+        </nav>
+
+        <form class="site-footer__newsletter" aria-label="Suscripción al newsletter">
+            <h2>Novedades</h2>
+            <p>
+                <label for="email-newsletter">Tu correo electrónico</label>
+                <input type="email" id="email-newsletter" name="email" placeholder="nombre@correo.com" autocomplete="email" required>
+            </p>
+            <button type="submit">Suscribirme</button>
+        </form>
+
+        <nav class="site-footer__redes" aria-label="Redes sociales">
+            <h2>Seguinos</h2>
+            <ul>
+                <li><a href="https://instagram.com/miumiu" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+                <li><a href="https://x.com/miumiu" target="_blank" rel="noopener noreferrer">X (Twitter)</a></li>
+            </ul>
+        </nav>
+
+        <p class="site-footer__legal">&copy; 2026 miu miu. Todos los derechos reservados.</p>
     </footer>
+
+    <script src="script.js" defer></script>
 
 </body>
 </html>

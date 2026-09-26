@@ -1,868 +1,980 @@
-/* ===== Reset y base ===== */
+/* ==========================================================================
+   miu miu - hoja de estilos principal
+   Paleta: dorado y marrón sobre fondo crema, líneas finas y esquinas
+   rectas (minimalista). Mobile first: las pantallas grandes se Bailey-
+   ajustan al final con una sola media query.
+   ========================================================================== */
+
 :root {
-    --header-h: 60px;
+    --dorado: #b08d57;          /* acentos, bordes y detalles */
+    --dorado-oscuro: #8a6a3b;   /* links y hover (contraste AA sobre crema) */
+    --marron: #3b2a1f;          /* texto principal y fondo del footer */
+    --marron-medio: #6b5343;    /* texto secundario */
+    --crema: #faf7f2;           /* fondo de la página */
+    --crema-oscuro: #f1e9df;    /* bloques y placeholders de foto */
+    --blanco: #fffdfb;          /* tarjetas y header */
+    --borde: #e2d6c6;
+    --sombra: 0 1px 3px rgba(59, 42, 31, .08);
+    --ancho: 75rem;             /* ancho máximo del contenido */
 }
 
-*, *::before, *::after {
-    margin: 0;
-    padding: 0;
+/* --------------------------------------------------------------- base --- */
+
+* {
     box-sizing: border-box;
 }
 
-html {
-    font-size: 16px;
-    scroll-behavior: smooth;
+body {
+    margin: 0;
+    background: var(--crema);
+    color: var(--marron);
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
 }
 
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    color: #374151;
-    background-color: #f9fafb;
-    line-height: 1.6;
-    min-height: 100vh;
-    /* ===== Template general con Grid: header / navbar / searchbar / main / footer ===== */
-    display: grid;
-    grid-template-areas:
-        "header"
-        "navbar"
-        "searchbar"
-        "main"
-        "footer";
-    grid-template-rows: auto auto auto 1fr auto;
-    grid-template-columns: 1fr;
+/* Las fotos se estiran al ancho de su contenedor sin deformarse. */
+img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Foto de la tarjeta de producto: ocupa el ancho de la tarjeta, se adapta
+   sola en el celular y nunca se estira de más. */
+.imagen-producto,
+.imagen-detalle {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* El navegador le pone margen a figure por defecto y descuadra la tarjeta. */
+.producto__imagen {
+    margin: 0 0 .4rem;
+}
+
+h1, h2, h3 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 400;
+    line-height: 1.2;
 }
 
 a {
-    color: #2563eb;
-    text-decoration: none;
-    transition: color 0.2s ease;
+    color: var(--dorado-oscuro);
 }
 
-a:hover {
-    color: #1d4ed8;
-}
-
-ul {
-    list-style: none;
-}
-
-/* ===== Header ===== */
-.site-header,
-header {
-    grid-area: header;
-    background-color: #1e3a5f;
-    color: #ffffff;
-    padding: 0 2rem;
-    min-height: var(--header-h);
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-wrap: nowrap;
-    gap: 0.75rem;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
-
-    h1 {
-        font-size: 1.5rem;
-        font-weight: 700;
-        letter-spacing: -0.02em;
-        a:hover {
-            color: #93c5fd;
-        }
-        a {
-            color: #ffffff;
-        }
-    }
-}
-
-/* ===== Navegación principal (navbar del layout Grid) ===== */
-.navbar,
-nav[aria-label="Navegación principal"] {
-    grid-area: navbar;
-}
-
-.navbar {
-    background-color: #16294a;
-    padding: 0.6rem 2rem;
-    ul {
-        justify-content: center;
-    }
-}
-
-nav[aria-label="Navegación principal"] ul {
-    display: flex;
-    gap: 1.5rem;
-}
-
-nav[aria-label="Navegación principal"] a {
-    color: #ffffff;
-    font-weight: 500;
-    font-size: 0.95rem;
-    padding: 0.35rem 0;
-    border-bottom: 2px solid transparent;
-    transition: color 0.2s ease, border-color 0.2s ease;
-}
-
-nav[aria-label="Navegación principal"] a:hover {
-    color: #93c5fd;
-    border-bottom-color: #93c5fd;
-}
-
-/* ===== Menú hamburguesa solo HTML + CSS (checkbox hack) ===== */
-/* El checkbox queda oculto pero funcional vía el <label> */
-.menu-toggle {
+/* Texto que solo necesita leer un lector de pantalla. */
+.visualmente-oculto {
     position: absolute;
-    opacity: 0;
     width: 1px;
     height: 1px;
     overflow: hidden;
-    pointer-events: none;
-}
-
-/* En desktop el botón hamburguesa no se muestra */
-.hamburger {
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    gap: 5px;
-    cursor: pointer;
-    padding: 0.5rem;
-    margin-left: auto;
-}
-
-.hamburger span {
-    display: block;
-    width: 25px;
-    height: 3px;
-    border-radius: 2px;
-    background-color: #ffffff;
-    transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-/* ===== Buscador de productos (solo HTML + CSS, sin JS) ===== */
-.search-bar {
-    grid-area: searchbar;
-    background-color: #ffffff;
-    border-bottom: 1px solid #e5e7eb;
-    padding: 0.9rem 2rem;
-    /* Fijo en la parte superior en mobile y desktop, debajo del header */
-    position: sticky;
-    top: var(--header-h);
-    z-index: 900;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
-}
-
-.search-bar form[role="search"] {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    gap: 0.6rem;
-    align-items: center;
-    min-width: 0;
-}
-
-.search-bar label {
-    margin: 0;
-    font-weight: 600;
-    color: #1e3a5f;
-    font-size: 0.95rem;
+    clip: rect(0 0 0 0);
     white-space: nowrap;
 }
 
-.search-bar input[type="search"] {
-    flex: 1;
-    min-width: 0;
-    padding: 0.6rem 0.9rem;
-    border: 1px solid #d1d5db;
-    border-radius: 6px;
-    font-size: 0.95rem;
-    font-family: inherit;
-    background-color: #f9fafb;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+:focus-visible {
+    outline: 2px solid var(--dorado-oscuro);
+    outline-offset: 2px;
 }
 
-.search-bar input[type="search"]:focus {
-    outline: none;
-    border-color: #2563eb;
-    background-color: #ffffff;
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
-}
-
-.search-bar button[type="submit"] {
-    background-color: #2563eb;
-    color: #ffffff;
-    border: none;
-    padding: 0.6rem 1.4rem;
-    border-radius: 6px;
-    font-size: 0.95rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-    white-space: nowrap;
-}
-
-.search-bar button[type="submit"]:hover {
-    background-color: #1d4ed8;
-}
-
-/* ===== Navegación breadcrumb ===== */
-nav[aria-label="Ruta de navegación"] ol {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-    font-size: 0.85rem;
-    color: #6b7280;
-    margin-bottom: 1.5rem;
-}
-
-nav[aria-label="Ruta de navegación"] a {
-    color: #6b7280;
-}
-
-nav[aria-label="Ruta de navegación"] a:hover {
-    color: #2563eb;
-}
-
-nav[aria-label="Ruta de navegación"] [aria-current="page"] {
-    color: #374151;
-    font-weight: 600;
-}
-
-/* ===== Layout principal (index) ===== */
-main {
-    grid-area: main;
-    max-width: 1200px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 2rem;
-}
-
-footer {
-    grid-area: footer;
-}
-
-#inicio {
-    /* Sub-grid del contenido: sidebar + catálogo */
-    display: grid;
-    grid-template-areas:
-        "sidebar"
-        "catalogo";
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    align-items: start;
-}
-
-/* ===== Aside / Filtros (sidebar del layout Grid) ===== */
-aside,
-.sidebar {
-    grid-area: sidebar;
-}
-
-aside {
-    background-color: #ffffff;
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
-    padding: 1.5rem;
-}
-
-aside h2 {
-    font-size: 1.1rem;
-    color: #1e3a5f;
-    margin-bottom: 1rem;
-}
-
-aside nav ul {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-aside nav a {
-    color: #374151;
-    font-size: 0.9rem;
-    padding: 0.35rem 0.5rem;
-    border-radius: 4px;
-    display: block;
-}
-
-aside nav a:hover {
-    background-color: #eff6ff;
-    color: #2563eb;
-}
-
-/* ===== Filtros de precio y envío en sidebar (solo HTML + CSS) ===== */
-.sidebar .filtros {
-    margin-top: 1.5rem;
-    padding-top: 1.25rem;
-    border-top: 1px solid #e5e7eb;
-    max-width: none;
-}
-
-.sidebar .filtros fieldset {
-    border: 0;
-    padding: 0;
-    margin: 0 0 1rem;
-    background-color: transparent;
-}
-
-.sidebar .filtros legend {
-    padding: 0;
-    margin-bottom: 0.5rem;
-    font-size: 0.95rem;
-}
-
-.sidebar .filtros label {
-    margin-top: 0.5rem;
-    font-size: 0.85rem;
-}
-
-.sidebar .filtros input[type="number"] {
-    width: 100%;
-    padding: 0.55rem 0.7rem;
-    border: 1px solid #d1d5db;
-    border-radius: 6px;
-    font-size: 0.9rem;
-    font-family: inherit;
-    background-color: #f9fafb;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-}
-
-.sidebar .filtros input[type="number"]:focus {
-    outline: none;
-    border-color: #2563eb;
-    background-color: #ffffff;
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
-}
-
-.sidebar .filtros .check-envio {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-top: 0.25rem;
-    cursor: pointer;
-    font-size: 0.9rem;
-}
-
-.sidebar .filtros input[type="checkbox"] {
-    width: 1rem;
-    height: 1rem;
-    accent-color: #2563eb;
-    cursor: pointer;
-}
-
-.sidebar .filtros button[type="submit"] {
-    width: 100%;
-    background-color: #1e3a5f;
-    color: #ffffff;
-    border: none;
-    padding: 0.6rem 1rem;
-    border-radius: 6px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-
-.sidebar .filtros button[type="submit"]:hover {
-    background-color: #2563eb;
-}
-
-/* ===== Filtros colapsables solo HTML + CSS (checkbox hack) ===== */
-.filtros-toggle {
-    position: absolute;
-    opacity: 0;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    pointer-events: none;
-}
-
-/* En desktop el botón de filtros no se muestra y el contenido va abierto */
-.filtros-boton {
-    display: none;
-}
-
-.filtros-contenido {
-    display: block;
-}
-
-.filtros-boton .flecha::after {
-    content: "▾";
-    display: inline-block;
-    transition: transform 0.2s ease;
-}
-
-/* ===== Catálogo (contenedor Grid del layout, tarjetas en Flex) ===== */
-#catalogo {
-    grid-area: catalogo;
-    min-width: 0;
-}
-
-#catalogo h2 {
-    font-size: 1.3rem;
-    color: #1e3a5f;
-    margin-bottom: 1.5rem;
-}
-
-#catalogo > h2 {
-    margin-bottom: 1.5rem;
-}
-
-/* Contenedor flex de las tarjetas */
-#catalogo .productos {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.25rem;
-    align-items: stretch;
-}
-
-/* ===== Tarjetas de productos (Flex items) ===== */
-/* Mobile primero: 1 columna */
-#catalogo article,
-#catalogo .card {
-    flex: 1 1 100%;
-    max-width: 100%;
-    background-color: #ffffff;
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
-    padding: 1.5rem;
-    transition: box-shadow 0.2s ease, border-color 0.2s ease;
-}
-
-#catalogo article:hover,
-#catalogo .card:hover {
-    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1);
-    border-color: #bfdbfe;
-}
-
-#catalogo article h3 a {
-    color: #1e3a5f;
-    font-size: 1.15rem;
-}
-
-#catalogo article h3 a:hover {
-    color: #2563eb;
-}
-
-#catalogo article p {
-    margin-bottom: 0.35rem;
-    color: #4b5563;
-    font-size: 0.95rem;
-}
-
-#catalogo article p:last-child {
-    margin-top: 0.75rem;
-}
-
-/* Imagen de producto (misma para todos) */
-#catalogo .card img,
-article[aria-label="Ficha del producto"] img {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-    border-radius: 6px;
-    margin-bottom: 1rem;
-    background-color: #f3f4f6;
-    display: block;
-}
-
-article[aria-label="Ficha del producto"] img {
-    max-width: 480px;
-}
-
-/* Tablet: 3 columnas */
-@media (min-width: 600px) and (max-width: 1023px) {
-    #catalogo article,
-    #catalogo .card {
-        flex: 1 1 calc(33.333% - 1.25rem);
-        max-width: calc(33.333% - 0.85rem);
-    }
-}
-
-/* Desktop: 4 columnas + sidebar lateral vía Grid */
-@media (min-width: 1024px) {
-    #inicio {
-        grid-template-areas: "sidebar catalogo";
-        grid-template-columns: 220px 1fr;
-    }
-
-    #catalogo article,
-    #catalogo .card {
-        flex: 1 1 calc(25% - 1.25rem);
-        max-width: calc(25% - 0.95rem);
-    }
-}
-
-/* Tablet: sidebar arriba, catálogo debajo (Grid de 1 columna) */
-@media (min-width: 600px) and (max-width: 1023px) {
-    #inicio {
-        grid-template-areas:
-            "sidebar"
-            "catalogo";
-        grid-template-columns: 1fr;
-    }
-}
-
-/* ===== Footer ===== */
-footer {
-    background-color: #1e3a5f;
-    color: #ffffff;
-    padding: 1.5rem 2rem;
-    text-align: center;
-    margin-top: auto;
-}
-
-footer p {
-    margin-bottom: 0.75rem;
-    font-size: 0.9rem;
-    color: #d1d5db;
-}
-
-footer nav ul {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-}
-
-footer nav a {
-    color: #93c5fd;
-    font-size: 0.9rem;
-    font-weight: 500;
-}
-
-footer nav a:hover {
-    color: #ffffff;
-}
-
-/* ===== Tablas ===== */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 1rem 0 1.5rem;
-    background-color: #ffffff;
-    border-radius: 8px;
-    overflow: hidden;
-    border: 1px solid #e5e7eb;
-}
-
-caption {
-    text-align: left;
-    font-weight: 600;
-    color: #1e3a5f;
-    padding: 0.75rem 1rem;
-    font-size: 1rem;
-}
-
-th, td {
-    padding: 0.75rem 1rem;
-    text-align: left;
-    border-bottom: 1px solid #f3f4f6;
-    font-size: 0.9rem;
-}
-
-thead th {
-    background-color: #f0f4ff;
-    color: #1e3a5f;
-    font-weight: 600;
-}
-
-tbody tr:last-child td {
-    border-bottom: none;
-}
-
-tfoot td {
-    font-weight: 700;
-    background-color: #f9fafb;
-    color: #1e3a5f;
-}
-
-/* ===== Formularios ===== */
-form {
-    max-width: 600px;
-}
-
-fieldset {
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
-    padding: 1.25rem 1.5rem;
-    margin-bottom: 1.25rem;
-    background-color: #ffffff;
-}
-
-legend {
-    font-weight: 600;
-    color: #1e3a5f;
-    padding: 0 0.5rem;
-}
+/* --------------------------------------------------------- formularios --- */
 
 label {
     display: block;
-    margin-top: 0.75rem;
-    margin-bottom: 0.25rem;
-    font-size: 0.9rem;
-    color: #374151;
+    margin-bottom: .3rem;
+    font-size: .75rem;
+    text-transform: uppercase;
+    letter-spacing: .1em;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-textarea {
+/* Cuando la etiqueta va después del checkbox o del radio, va en la misma línea. */
+input[type="checkbox"] + label,
+input[type="radio"] + label {
+    display: inline;
+    margin-bottom: 0;
+}
+
+input, select, textarea {
     width: 100%;
-    padding: 0.6rem 0.75rem;
-    border: 1px solid #d1d5db;
-    border-radius: 6px;
-    font-size: 0.95rem;
-    font-family: inherit;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-    background-color: #ffffff;
+    padding: .55rem .7rem;
+    border: 1px solid var(--borde);
+    background: var(--blanco);
+    color: var(--marron);
+    font: inherit;
 }
 
-input:focus, textarea:focus {
-    outline: none;
-    border-color: #2563eb;
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+input[type="checkbox"], input[type="radio"] {
+    width: auto;
+    accent-color: var(--dorado-oscuro);
 }
 
-input[type="radio"] {
-    margin-right: 0.4rem;
-}
-
-
-
-input[type="submit"] {
-    background-color: #2563eb;
-    color: #ffffff;
-    border: none;
-    padding: 0.7rem 1.5rem;
-    border-radius: 6px;
-    font-size: 1rem;
-    font-weight: 600;
+button {
+    padding: .7rem 1.4rem;
+    border: 1px solid var(--marron);
+    background: transparent;
+    color: var(--marron);
+    font: inherit;
+    font-size: .75rem;
+    text-transform: uppercase;
+    letter-spacing: .12em;
     cursor: pointer;
-    transition: background-color 0.2s ease;
-    margin-top: 0.5rem;
+    transition: background .2s, color .2s;
 }
 
-input[type="submit"]:hover {
-    background-color: #1d4ed8;
+button:hover {
+    background: var(--marron);
+    color: var(--crema);
 }
 
-[role="button"] {
-    display: inline-block;
-    background-color: #2563eb;
-    color: #ffffff;
-    padding: 0.6rem 1.25rem;
-    border-radius: 6px;
-    font-weight: 600;
-    transition: background-color 0.2s ease;
+/* ------------------------------------------------------------- header --- */
+
+.site-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    padding: 1.4rem 1.5rem;
+    background: var(--blanco);
+    border-bottom: 1px solid var(--borde);
 }
 
-[role="button"]:hover {
-    background-color: #1d4ed8;
-    color: #ffffff;
+.site-header__marca {
+    margin: 0;
 }
 
-/* ===== Artículo producto ===== */
-article[aria-label="Ficha del producto"] {
-    background-color: #ffffff;
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
-    padding: 2rem;
+.site-header__marca a {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.7rem;
+    letter-spacing: .18em;
+    color: var(--marron);
+    text-decoration: none;
 }
 
-article[aria-label="Ficha del producto"] h2 {
-    color: #1e3a5f;
-    margin-bottom: 0.75rem;
+.site-header__nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
-article[aria-label="Ficha del producto"] section {
-    margin-top: 1.5rem;
+.site-header__nav a {
+    font-size: .75rem;
+    text-transform: uppercase;
+    letter-spacing: .14em;
+    text-decoration: none;
+    color: var(--marron);
 }
 
-article[aria-label="Ficha del producto"] h3 {
-    color: #1e3a5f;
-    margin-bottom: 0.5rem;
+.site-header__nav a:hover,
+.site-header__nav a[aria-current="page"] {
+    color: var(--dorado-oscuro);
+    border-bottom: 1px solid var(--dorado);
 }
 
-/* ===== Secciones generales ===== */
-section[aria-label] {
-    margin-bottom: 2rem;
+/* El buscador no muestra la etiqueta, pero sigue announcing al lector. */
+.site-header__buscador {
+    display: flex;
+    gap: .5rem;
+    flex: 1 1 12rem;
+    max-width: 18rem;
 }
 
-h2 {
+.site-header__buscador label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+.site-header__buscador input {
+    width: 100%;
+}
+
+/* --------------------------------------------------------------- hero --- */
+
+.hero {
+    max-width: var(--ancho);
+    margin: 0 auto;
+    padding: 4rem 1.5rem 3rem;
+    text-align: center;
+    border-bottom: 1px solid var(--borde);
+}
+
+.hero h1 {
+    margin: 0 0 1rem;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+}
+
+.hero p {
+    max-width: 40rem;
+    margin: 0 auto 1.5rem;
+    color: var(--marron-medio);
+}
+
+/* ----------------------------------------------------------- catálogo --- */
+
+.catalogo {
+    display: grid;
+    grid-template-columns: 15rem 1fr;
+    gap: 2.5rem;
+    max-width: var(--ancho);
+    margin: 0 auto;
+    padding: 3rem 1.5rem 4rem;
+}
+
+/* ---- filtros ---- */
+
+.filtros {
+    align-self: start;
+    position: sticky;
+    top: 1.5rem;
+}
+
+/* Barra que abre y cierra los filtros. */
+.filtros__resumen {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: .9rem 1rem;
+    background: var(--blanco);
+    border: 1px solid var(--borde);
+    cursor: pointer;
+    list-style: none;
+}
+
+.filtros__resumen::-webkit-details-marker {
+    display: none;
+}
+
+/* El h2 vive adentro del summary para no duplicar el título. */
+.filtros__resumen h2 {
+    margin: 0;
+    font-family: inherit;
+    font-size: .8rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: .14em;
+}
+
+.filtros__resumen::after {
+    content: "+";
+    font-size: 1.1rem;
+    line-height: 1;
+    color: var(--dorado-oscuro);
+}
+
+.filtros__grupo[open] > .filtros__resumen::after {
+    content: "\2212";
+}
+
+.filtros__form {
+    padding: 1.2rem 1rem;
+    background: var(--blanco);
+    border: 1px solid var(--borde);
+    border-top: 0;
+}
+
+/* El h2 de los filtros vive dentro del summary y se estilo más arriba. */
+.catalogo__listado h2 {
+    margin: 0 0 1rem;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+}
+
+.filtros fieldset {
+    margin: 0 0 1.5rem;
+    padding: 1.2rem 0 0;
+    border: 0;
+    border-top: 1px solid var(--borde);
+}
+
+.filtros legend {
+    padding: 0;
+    font-size: .75rem;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    color: var(--dorado-oscuro);
+}
+
+.filtros__form ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Cada control y su etiqueta van en la misma línea. */
+.filtros__form p,
+.filtros__form li {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    margin: 0 0 .6rem;
+}
+
+.filtros__form label {
+    margin: 0;
+    font-size: .8rem;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+.filtros__form input:not([type="checkbox"]):not([type="radio"]),
+.filtros__form select {
+    flex: 1;
+}
+
+.filtros__form button {
+    width: 100%;
+    margin-bottom: .5rem;
+}
+
+.catalogo__conteo {
+    margin: 0 0 1.5rem;
+    font-size: .8rem;
+    color: var(--marron-medio);
+}
+
+/* ---- productos ---- */
+
+.productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.producto {
+    position: relative;              /* necesario para el link que se estira */
+    display: flex;
+    flex-direction: column;
+    gap: .3rem;
+    padding: 1rem;
+    background: var(--blanco);
+    border: 1px solid var(--borde);
+    transition: border-color .2s, box-shadow .2s;
+}
+
+.producto:hover {
+    border-color: var(--dorado);
+    box-shadow: var(--sombra);
+}
+
+/* Hace clickeable toda la tarjeta sin agregar un segundo link por producto. */
+.producto__nombre a::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+}
+
+.producto__nombre {
+    margin: .3rem 0 0;
+    font-size: 1.05rem;
+}
+
+.producto__nombre a {
+    color: var(--marron);
+    text-decoration: none;
+}
+
+.producto:hover .producto__nombre a {
+    text-decoration: underline;
+    text-decoration-color: var(--dorado);
+    text-underline-offset: 3px;
+}
+
+.producto__tipo {
+    margin: 0;
+    font-size: .7rem;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    color: var(--marron-medio);
+}
+
+.producto__precio {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.producto__descripcion {
+    margin: 0;
+    font-size: .9rem;
+    color: var(--marron-medio);
+}
+
+/* ------------------------------------------------------ ficha producto --- */
+
+.miga ol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    margin: 0;
+    padding: 1.5rem 0 0;
+    list-style: none;
+    font-size: .75rem;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+}
+
+.miga li + li::before {
+    content: "/";
+    margin-right: .5rem;
+    color: var(--dorado);
+}
+
+.miga [aria-current="page"] {
+    color: var(--marron-medio);
+}
+
+.detalle {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    max-width: var(--ancho);
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+}
+
+.detalle__info h1 {
+    margin: 0 0 .3rem;
+    font-size: 2rem;
+}
+
+.detalle__tipo {
+    margin: 0;
+    font-size: .7rem;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    color: var(--marron-medio);
+}
+
+.detalle__precio {
+    margin: .5rem 0 1rem;
     font-size: 1.3rem;
-    color: #1e3a5f;
 }
 
-h3 {
+.detalle__descripcion {
+    margin: 0 0 1.5rem;
+    color: var(--marron-medio);
+}
+
+.detalle__subtitulo {
+    margin: 2rem 0 .8rem;
+    font-family: inherit;
+    font-size: .75rem;
+    text-transform: uppercase;
+    letter-spacing: .14em;
+}
+
+/* Ficha técnica: término y valor, uno por fila con una línea de por medio. */
+.ficha {
+    margin: 0;
+}
+
+.ficha div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: .7rem 0;
+    border-bottom: 1px solid var(--borde);
+}
+
+.ficha dt {
+    flex: 0 0 40%;
+    font-size: .75rem;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--marron-medio);
+}
+
+.ficha dd {
+    margin: 0;
+}
+
+.cuidados {
+    margin: 0;
+    padding-left: 1.1rem;
+    color: var(--marron-medio);
+}
+
+.cuidados li {
+    margin-bottom: .4rem;
+}
+
+.comprar,
+.relacionados {
+    max-width: var(--ancho);
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+    border-top: 1px solid var(--borde);
+}
+
+.comprar h2,
+.relacionados h2 {
+    margin: 0 0 1.2rem;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+}
+
+.comprar label {
+    margin-bottom: .4rem;
+}
+
+.comprar input[type="number"] {
+    width: 6rem;
+}
+
+/* Los relacionados usan las mismas tarjetas del catálogo, más chicas. */
+.productos--chico {
+    grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+}
+
+/* --------------------------------------------------------- pantalla carrito --- */
+
+.carrito,
+.contacto {
+    display: grid;
+    gap: 3rem;
+    max-width: var(--ancho);
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 3rem;
+}
+
+.carrito {
+    grid-template-columns: 1fr 20rem;
+}
+
+.contacto {
+    grid-template-columns: 1fr 1fr;
+}
+
+/* ---- tabla de productos ---- */
+
+.carrito__tabla {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--blanco);
+    border: 1px solid var(--borde);
+}
+
+.carrito__tabla caption {
+    padding: 0 0 .8rem;
+    font-size: .75rem;
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    color: var(--marron-medio);
+}
+
+.carrito__tabla th,
+.carrito__tabla td {
+    padding: .8rem .9rem;
+    border-bottom: 1px solid var(--borde);
+    text-align: left;
+    vertical-align: middle;
+}
+
+.carrito__tabla thead th {
+    border-bottom-width: 2px;
+    border-bottom-color: var(--dorado);
+    font-size: .7rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    color: var(--dorado-oscuro);
+}
+
+.carrito__tabla tbody th {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 400;
+}
+
+.carrito__tabla tbody th span {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: .8rem;
+    color: var(--marron-medio);
+}
+
+.carrito__tabla tbody th a {
+    color: var(--marron);
+    text-decoration: none;
+}
+
+.carrito__tabla tbody th a:hover {
+    text-decoration: underline;
+}
+
+/* El <select> de cantidad no se estira como un input normal. */
+.carrito__tabla select {
+    width: auto;
+}
+
+.carrito__form > p {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.2rem;
+    margin: 1.2rem 0 0;
+}
+
+/* ---- resumen del pedido ---- */
+
+.carrito__resumen {
+    align-self: start;
+    padding: 1.5rem;
+    background: var(--blanco);
+    border: 1px solid var(--borde);
+}
+
+.carrito__resumen h2,
+.contacto__formulario h2,
+.contacto__faq h2 {
+    font-family: inherit;
+    font-size: .8rem;
+    text-transform: uppercase;
+    letter-spacing: .14em;
+}
+
+.resumen__totales div {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: .6rem 0;
+    border-bottom: 1px solid var(--borde);
+    font-size: .9rem;
+}
+
+.resumen__totales dt {
+    color: var(--marron-medio);
+}
+
+.resumen__totales dd {
+    margin: 0;
+}
+
+/* La última fila es el total: se destaca y no lleva línea. */
+.resumen__totales div:last-child {
+    padding-top: .9rem;
+    border-bottom: 0;
     font-size: 1.1rem;
 }
 
-/* ===== Responsive ===== */
+.resumen__totales div:last-child dt {
+    font-size: .75rem;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    color: var(--marron);
+}
+
+.carrito__checkout button {
+    width: 100%;
+    margin-top: 1.4rem;
+}
+
+/* Botón con apariencia de link, para el "Quitar" de cada fila. */
+.enlace-boton {
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--dorado-oscuro);
+    font-size: .85rem;
+    text-transform: none;
+    letter-spacing: 0;
+    text-decoration: underline;
+}
+
+.enlace-boton:hover {
+    background: none;
+    color: var(--marron);
+}
+
+.carrito__vacio {
+    display: block;
+    padding: 1.8rem 1rem;
+    text-align: center;
+    color: var(--marron-medio);
+}
+
+.carrito__aviso {
+    margin: 0 0 1rem;
+    padding: .8rem 1rem;
+    background: var(--crema-oscuro);
+    border: 1px solid var(--borde);
+    font-size: .9rem;
+}
+
+/* ------------------------------------------------------- pantalla contacto --- */
+
+.contacto address {
+    font-style: normal;
+}
+
+.contacto address p {
+    margin: 0 0 .4rem;
+}
+
+.contacto__horarios div {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: .5rem 0;
+    border-bottom: 1px solid var(--borde);
+    font-size: .9rem;
+}
+
+.contacto__horarios dt {
+    color: var(--marron-medio);
+}
+
+.contacto__horarios dd {
+    margin: 0;
+}
+
+.contacto__datos h3 {
+    margin: 1.8rem 0 .6rem;
+    font-family: inherit;
+    font-size: .75rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: .14em;
+}
+
+.formulario fieldset {
+    margin: 0 0 1.8rem;
+    padding: 1.4rem 0 0;
+    border: 0;
+    border-top: 1px solid var(--borde);
+}
+
+.formulario legend {
+    padding: 0;
+    font-size: .75rem;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    color: var(--dorado-oscuro);
+}
+
+.formulario p {
+    margin: 0 0 1rem;
+}
+
+.formulario textarea {
+    resize: vertical;
+}
+
+.formulario button + button {
+    margin-left: .5rem;
+}
+
+.contacto__faq {
+    max-width: var(--ancho);
+    margin: 0 auto;
+    padding: 0 1.5rem 3rem;
+}
+
+.contacto__faq details {
+    margin-bottom: .6rem;
+    padding: .9rem 1.1rem;
+    background: var(--blanco);
+    border: 1px solid var(--borde);
+}
+
+.contacto__faq summary {
+    cursor: pointer;
+    font-size: .95rem;
+}
+
+.contacto__faq details p {
+    margin: .8rem 0 0;
+    color: var(--marron-medio);
+}
+
+/* ------------------------------------------------------- títulos de página --- */
+
+/* El h1 va suelto en el main en carrito y contacto (en el index está dentro
+   del hero), así que se le da el mismo ancho máximo y espaciado. */
+main > h1 {
+    max-width: var(--ancho);
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 1.2rem;
+    font-size: 2rem;
+}
+
+main > h1 + p {
+    max-width: var(--ancho);
+    margin: 0 auto;
+    padding: 0 1.5rem 1.5rem;
+    color: var(--marron-medio);
+}
+
+/* ------------------------------------------------------------- footer --- */
+
+.site-footer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+    padding: 3rem 1.5rem 1.5rem;
+    background: var(--marron);
+    color: var(--crema);
+}
+
+.site-footer a {
+    color: var(--crema);
+    text-decoration: none;
+}
+
+.site-footer a:hover {
+    text-decoration: underline;
+}
+
+.site-footer h2 {
+    margin: 0 0 .8rem;
+    font-family: inherit;
+    font-size: .75rem;
+    text-transform: uppercase;
+    letter-spacing: .14em;
+}
+
+.site-footer ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.site-footer li {
+    margin-bottom: .4rem;
+    font-size: .9rem;
+}
+
+.site-footer address {
+    font-style: normal;
+    font-size: .9rem;
+}
+
+.site-footer label {
+    color: rgba(250, 247, 242, .7);
+}
+
+.site-footer__newsletter input {
+    background: transparent;
+    border-color: rgba(250, 247, 242, .35);
+    color: var(--crema);
+}
+
+.site-footer__newsletter button {
+    border-color: var(--crema);
+    color: var(--crema);
+}
+
+.site-footer__newsletter button:hover {
+    background: var(--crema);
+    color: var(--marron);
+}
+
+.site-footer__legal {
+    grid-column: 1 / -1;
+    margin: 0;
+    padding-top: 1.2rem;
+    border-top: 1px solid rgba(250, 247, 242, .2);
+    font-size: .8rem;
+}
+
+/* --------------------------------------------------------- responsive --- */
+
+/* Todo lo de acá es para celular: una sola columna, sin anchos fijos y con
+   padding lateral de 15px para que nada quede pegado al borde de la pantalla. */
 @media (max-width: 768px) {
-    .site-header,
-    header {
-        flex-direction: row;
-        align-items: center;
-        padding: 0 1rem;
-        min-height: var(--header-h);
-    }
 
-    /* --- Menú hamburguesa: solo mobile --- */
-    .hamburger {
-        display: flex;
-    }
-
-    .navbar {
-        padding: 0 1rem;
-    }
-
-    /* Nav colapsada por defecto, se abre con el checkbox */
-    nav[aria-label="Navegación principal"] ul {
-        display: none;
-        flex-direction: column;
-        gap: 0;
-        padding: 0.5rem 0;
-    }
-
-    nav[aria-label="Navegación principal"] li {
-        border-top: 1px solid rgba(255, 255, 255, 0.12);
-    }
-
-    nav[aria-label="Navegación principal"] li:first-child {
-        border-top: none;
-    }
-
-    nav[aria-label="Navegación principal"] a {
-        display: block;
-        padding: 0.7rem 0.25rem;
-        border-bottom: none;
-    }
-
-    nav[aria-label="Navegación principal"] a:hover {
-        border-bottom-color: transparent;
-    }
-
-    /* Mostrar nav cuando el checkbox está marcado */
-    #menu-toggle:checked ~ .navbar ul {
-        display: flex;
-    }
-
-    /* Hamburguesa animada a "X" cuando el menú está abierto */
-    #menu-toggle:checked ~ .site-header .hamburger span:nth-child(1) {
-        transform: translateY(8px) rotate(45deg);
-    }
-
-    #menu-toggle:checked ~ .site-header .hamburger span:nth-child(2) {
-        opacity: 0;
-    }
-
-    #menu-toggle:checked ~ .site-header .hamburger span:nth-child(3) {
-        transform: translateY(-8px) rotate(-45deg);
-    }
-
-    /* --- Filtros colapsables: cerrados por defecto, solo mobile --- */
-    .filtros-boton {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        background-color: #1e3a5f;
-        color: #ffffff;
-        font-weight: 600;
-        font-size: 0.95rem;
-        padding: 0.7rem 1rem;
-        border-radius: 6px;
-        cursor: pointer;
-    }
-
-    .filtros-contenido {
-        display: none;
-        margin-top: 1rem;
-    }
-
-    #filtros-toggle:checked ~ .filtros-contenido {
-        display: block;
-    }
-
-    #filtros-toggle:checked ~ .filtros-boton .flecha::after {
-        transform: rotate(180deg);
-    }
-
-    .search-bar {
-        padding: 0.75rem 1rem;
-    }
-
-    .search-bar form[role="search"] {
-        flex-wrap: wrap;
-    }
-
-    .search-bar label {
-        flex: 1 1 100%;
-    }
-
-    #inicio {
-        grid-template-areas:
-            "sidebar"
-            "catalogo";
+    .catalogo,
+    .detalle,
+    .carrito,
+    .contacto {
         grid-template-columns: 1fr;
     }
 
-    main {
-        padding: 1rem;
+    /* Los contenedores ocupan todo el ancho disponible, sin ancho fijo. */
+    .hero,
+    .catalogo,
+    .carrito,
+    .contacto,
+    .detalle,
+    .comprar,
+    .relacionados,
+    .contacto__faq,
+    .miga,
+    main > h1,
+    main > h1 + p {
+        width: 100%;
+        max-width: 100%;
+        padding-left: 15px;
+        padding-right: 15px;
     }
 
-    nav[aria-label="Ruta de navegación"] ol {
-        font-size: 0.8rem;
+    .filtros {
+        position: static;
     }
 
-    footer nav ul {
+    /* Botones y controles comfortablemente táctiles (mínimo 44px de alto). */
+    button,
+    .filtros__form button,
+    .carrito__checkout button {
+        width: 100%;
+        min-height: 44px;
+        padding: .8rem 1rem;
+    }
+
+    /* Los checkbox y los radios quedan como están: no se estiran. */
+    input:not([type="checkbox"]):not([type="radio"]),
+    select,
+    textarea,
+    .site-header__buscador input,
+    .comprar input[type="number"] {
+        width: 100%;
+        max-width: 100%;
+        min-height: 44px;
+    }
+
+    .site-header,
+    .site-header__buscador {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* En el celular los filtros ocupan una fila y el desplegable va arriba. */
+    .filtros__form p,
+    .filtros__form li {
         flex-wrap: wrap;
-        gap: 1rem;
     }
 
-    table {
-        font-size: 0.85rem;
+    .carrito__tabla select {
+        width: 100%;
+        min-width: 4rem;
     }
 
-    th, td {
-        padding: 0.5rem 0.6rem;
+    .ficha div {
+        flex-direction: column;
+        gap: .2rem;
+    }
+
+    .ficha dt {
+        flex: none;
     }
 }
 
-@media (max-width: 480px) {
-    html {
-        font-size: 14px;
-    }
-
-    header h1 {
-        font-size: 1.25rem;
-    }
-
-    nav[aria-label="Navegación principal"] ul {
-        gap: 0.75rem;
-    }
-
-    nav[aria-label="Navegación principal"] a {
-        font-size: 0.85rem;
-    }
-
-    aside nav ul {
-        gap: 0.25rem;
-    }
-
-    footer {
-        padding: 1rem;
-    }
-
-    footer p {
-        font-size: 0.8rem;
-    }
-
-    footer nav ul {
-        flex-direction: column;
-        gap: 0.5rem;
+@media (prefers-reduced-motion: reduce) {
+    .producto,
+    button {
+        transition: none;
     }
 }

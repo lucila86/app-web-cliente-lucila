@@ -1,92 +1,207 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-AR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Contacto con Apple Store. Consultas, soporte y más información.">
-    <title>Contacto | Apple Store</title>
+    <meta name="description" content="Contacto de miu miu: escribinos para consultas sobre pedidos, cambios, devoluciones o para coordinar una visita al taller.">
+    <title>miu miu | Contacto</title>
+
+    <!-- Maquetado en style.css -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <input type="checkbox" id="menu-toggle" class="menu-toggle" tabindex="-1" aria-hidden="true">
-
+    <!-- ==================== ENCABEZADO ==================== -->
     <header class="site-header">
-        <h1><a href="index.html">Apple Store</a></h1>
-        <label for="menu-toggle" class="hamburger" aria-label="Abrir o cerrar menú de navegación">
-            <span></span>
-            <span></span>
-            <span></span>
-        </label>
-    </header>
+        <p class="site-header__marca">
+            <a href="index.html" aria-label="miu miu, ir al inicio">miu miu</a>
+        </p>
 
-    <nav class="navbar" aria-label="Navegación principal">
-        <ul>
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="index.html#catalogo">Catálogo</a></li>
-            <li><a href="carrito.html">Carrito</a></li>
-            <li><a href="contacto.html">Contacto</a></li>
-        </ul>
-    </nav>
-
-    <main>
-        <nav aria-label="Ruta de navegación">
-            <ol>
+        <nav class="site-header__nav" aria-label="Navegación principal">
+            <ul>
                 <li><a href="index.html">Inicio</a></li>
-                <li aria-current="page">Contacto</li>
-            </ol>
+                <li><a href="index.html#catalogo">Catálogo</a></li>
+                <li><a href="carrito.html">Carrito</a></li>
+                <li><a href="contacto.html" aria-current="page">Contacto</a></li>
+            </ul>
         </nav>
 
-        <h2>Contacto</h2>
+        <!-- role="search" le avisa al lector de pantalla que este formulario es un buscador -->
+        <form class="site-header__buscador" role="search" method="get" action="index.html#catalogo" aria-label="Buscar carteras">
+            <label for="buscar">Buscar carteras</label>
+            <input type="search" id="buscar" name="q" placeholder="Ej: bandolera de cuero" autocomplete="off">
+            <button type="submit">Buscar</button>
+        </form>
+    </header>
 
-        <section aria-label="Formulario de contacto">
-            <h3>Enviar un mensaje</h3>
-            <form action="#" method="post">
-                <fieldset>
-                    <legend>Datos personales</legend>
-                    <label for="nombre">Nombre completo</label>
-                    <input type="text" id="nombre" name="nombre" required>
+    <!-- ==================== CONTENIDO PRINCIPAL ==================== -->
+    <main>
 
-                    <label for="email">Correo electrónico</label>
-                    <input type="email" id="email" name="email" required>
+        <h1 id="titulo-pagina">Contacto</h1>
+        <p>¿Tenés una consulta sobre un pedido, un cambio o querés pasar por el taller? Escribinos y te respondemos dentro de las 48 horas hábiles.</p>
 
-                    <label for="telefono">Teléfono</label>
-                    <input type="tel" id="telefono" name="telefono">
-                </fieldset>
+        <div class="contacto">
 
-                <fieldset>
-                    <legend>Mensaje</legend>
-                    <label for="asunto">Asunto</label>
-                    <input type="text" id="asunto" name="asunto" required>
+            <!-- ---------- DATOS DE CONTACTO ---------- -->
+            <section class="contacto__datos" aria-labelledby="titulo-datos">
+                <h2 id="titulo-datos">Datos de contacto</h2>
+                <address>
+                    <p>miu miu · Taller en Zapatería 1234, Rosario, Santa Fe</p>
+                    <p><a href="tel:+54341000000">341 000-0000</a></p>
+                    <p><a href="mailto:hola@miumiu.com.ar">hola@miumiu.com.ar</a></p>
+                </address>
 
-                    <label for="mensaje">Mensaje</label>
-                    <textarea id="mensaje" name="mensaje" rows="6" required></textarea>
-                </fieldset>
+                <h3>Horarios de atención</h3>
+                <dl class="contacto__horarios">
+                    <div>
+                        <dt>Lunes a viernes</dt>
+                        <dd>9 a 18 hs</dd>
+                    </div>
+                    <div>
+                        <dt>Sábados</dt>
+                        <dd>9 a 13 hs</dd>
+                    </div>
+                    <div>
+                        <dt> Domingos y feriados</dt>
+                        <dd>Sin atención</dd>
+                    </div>
+                </dl>
 
-                <p><input type="submit" value="Enviar mensaje"></p>
-            </form>
-        </section>
+                <p>Si te conviene, coordiná la visita con una hora antes por el formulario.</p>
+            </section>
 
-        <section aria-label="Información de contacto">
-            <h3>Información de contacto</h3>
-            <address>
-                <p><strong>Sucursal principal:</strong> Avenida Siempre Viva 123, Ciudad Autónoma de Buenos Aires, Argentina</p>
-                <p><strong>Teléfono:</strong> +54 11 1234-5678</p>
-                <p><strong>Email:</strong> soporte@applestore.com.ar</p>
-                <p><strong>Horario de atención:</strong> Lunes a viernes, de 9:00 a 19:00 h. Sábados, de 10:00 a 14:00 h.</p>
-            </address>
+            <!-- ---------- FORMULARIO DE CONTACTO ---------- -->
+            <section class="contacto__formulario" aria-labelledby="titulo-formulario">
+                <h2 id="titulo-formulario">Envianos un mensaje</h2>
+
+                <!--
+                    Los atributos required, maxlength, type="email" y autocomplete
+                    ya validan solos en el navegador, sin una línea de JS.
+
+                    El action apunta a esta misma página: cuando exista el servidor
+                    (o el PHP del TP) hay que cambiarlo por la URL real que recibe
+                    los datos del formulario.
+                -->
+                <form class="formulario" method="post" action="contacto.html" aria-labelledby="titulo-formulario">
+
+                    <fieldset>
+                        <legend>Tus datos</legend>
+                        <p>
+                            <label for="nombre">Nombre y apellido</label>
+                            <input type="text" id="nombre" name="nombre" required autocomplete="name">
+                        </p>
+                        <p>
+                            <label for="email">Correo electrónico</label>
+                            <input type="email" id="email" name="email" required autocomplete="email">
+                        </p>
+                        <p>
+                            <label for="telefono">Teléfono (opcional)</label>
+                            <input type="tel" id="telefono" name="telefono" autocomplete="tel">
+                        </p>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Tu consulta</legend>
+                        <p>
+                            <label for="asunto">Motivo</label>
+                            <select id="asunto" name="asunto" required>
+                                <option value="producto">Consulta sobre un producto</option>
+                                <option value="pedido">Estado de mi pedido</option>
+                                <option value="cambio">Cambios o devoluciones</option>
+                                <option value="garantia">Garantía o reparación</option>
+                                <option value="taller">Visita al taller</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                        </p>
+                        <p>
+                            <label for="pedido">Número de pedido (opcional)</label>
+                            <input type="text" id="pedido" name="pedido" placeholder="Ej: MM-1024" autocomplete="off">
+                        </p>
+                        <p>
+                            <label for="mensaje">Mensaje</label>
+                            <textarea id="mensaje" name="mensaje" rows="6" maxlength="600" required
+                                placeholder="Contanos qué necesitás y lo resolvemos."></textarea>
+                        </p>
+                    </fieldset>
+
+                    <p>
+                        <input type="checkbox" id="acepto" name="acepto" value="si" required>
+                        <label for="acepto">Acepto que usen mis datos para responder esta consulta.</label>
+                    </p>
+
+                    <button type="submit">Enviar mensaje</button>
+                    <button type="reset">Limpiar formulario</button>
+                </form>
+            </section>
+        </div>
+
+        <!-- ---------- PREGUNTAS FRECUENTES ---------- -->
+        <section class="contacto__faq" aria-labelledby="titulo-faq">
+            <h2 id="titulo-faq">Preguntas frecuentes</h2>
+
+            <!-- details y summary son HTML nativo: el desplegable no necesita JS -->
+            <details>
+                <summary>¿Cuánto demora el envío?</summary>
+                <p>Entre 3 y 7 días hábiles a todo el país. Los pedidos hechos después de las 14 hs se despachan al día siguiente.</p>
+            </details>
+
+            <details>
+                <summary>¿Puedo cambiar una cartera si no me gusta?</summary>
+                <p>Sí, tenés 30 días desde que recibiste el pedido, siempre que la cartera esté sin uso y con su etiqueta. Los productos hechos a medida no admiten cambio.</p>
+            </details>
+
+            <details>
+                <summary>¿Cómo se cuida el cuero?</summary>
+                <p>Guardala lejos del sol y la humedad. Si se moja, dejala secar sola y después pasale un paño apenas húmedo.</p>
+            </details>
+
+            <details>
+                <summary>¿Hacen carteras a medida?</summary>
+                <p>Sí, escribinos por el formulario con la idea que tenés y te pasamos el presupuesto.</p>
+            </details>
         </section>
     </main>
 
-    <footer id="contacto">
-        <p>&copy; 2026 Apple Store. Todos los derechos reservados.</p>
-        <nav aria-label="Redes sociales">
+    <!-- ==================== PIE DE PAGINA ==================== -->
+    <footer class="site-footer">
+
+        <section class="site-footer__contacto" aria-labelledby="titulo-contacto">
+            <h2 id="titulo-contacto">Contacto</h2>
+            <address>
+                <p>miu miu · Taller en Zapatería 1234, Rosario, Santa Fe</p>
+                <p><a href="tel:+54341000000">341 000-0000</a></p>
+                <p><a href="mailto:hola@miumiu.com.ar">hola@miumiu.com.ar</a></p>
+            </address>
+        </section>
+
+        <nav class="site-footer__links" aria-label="Enlaces del pie de página">
+            <h2>Información</h2>
             <ul>
-                <li><a href="https://instagram.com/apple" rel="noopener noreferrer" target="_blank">Instagram</a></li>
-                <li><a href="https://x.com/apple" rel="noopener noreferrer" target="_blank">X (Twitter)</a></li>
-                <li><a href="https://youtube.com/apple" rel="noopener noreferrer" target="_blank">YouTube</a></li>
+                <li><a href="contacto.html">Sobre nosotros</a></li>
+                <li><a href="index.html#catalogo">Gu&iacute;a de medidas</a></li>
+                <li><a href="contacto.html">Env&iacute;os y devoluciones</a></li>
+                <li><a href="contacto.html">Preguntas frecuentes</a></li>
             </ul>
         </nav>
+
+        <form class="site-footer__newsletter" aria-label="Suscripción al newsletter">
+            <h2>Novedades</h2>
+            <p>
+                <label for="email-newsletter">Tu correo electrónico</label>
+                <input type="email" id="email-newsletter" name="email" placeholder="nombre@correo.com" autocomplete="email" required>
+            </p>
+            <button type="submit">Suscribirme</button>
+        </form>
+
+        <nav class="site-footer__redes" aria-label="Redes sociales">
+            <h2>Seguinos</h2>
+            <ul>
+                <li><a href="https://instagram.com/miumiu" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+                <li><a href="https://x.com/miumiu" target="_blank" rel="noopener noreferrer">X (Twitter)</a></li>
+            </ul>
+        </nav>
+
+        <p class="site-footer__legal">&copy; 2026 miu miu. Todos los derechos reservados.</p>
     </footer>
 
 </body>

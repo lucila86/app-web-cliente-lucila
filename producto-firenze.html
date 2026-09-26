@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bandolera Firenze (Bandolera / crossbody) en Cuero vacuno curtido vegetal. Medidas: 18 cm × 24 cm × 9 cm. $52.000. Envíos a todo el país desde miu miu.">
+    <title>miu miu | Bandolera Firenze</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ==================== ENCABEZADO ==================== -->
+    <header class="site-header">
+        <p class="site-header__marca">
+            <a href="index.html" aria-label="miu miu, ir al inicio">miu miu</a>
+        </p>
+
+        <nav class="site-header__nav" aria-label="Navegación principal">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="index.html#catalogo">Catálogo</a></li>
+                <li><a href="carrito.html">Carrito</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+
+        <!-- role="search" le avisa al lector de pantalla que este formulario es un buscador -->
+        <form class="site-header__buscador" role="search" method="get" action="index.html#catalogo" aria-label="Buscar carteras">
+            <label for="buscar">Buscar carteras</label>
+            <input type="search" id="buscar" name="q" placeholder="Ej: bandolera de cuero" autocomplete="off">
+            <button type="submit">Buscar</button>
+        </form>
+    </header>
+
+    <!-- ==================== CONTENIDO PRINCIPAL ==================== -->
+    <main>
+
+        <nav class="miga" aria-label="Ruta de navegación">
+            <ol>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="index.html#catalogo">Catálogo</a></li>
+                <li aria-current="page">Bandolera Firenze</li>
+            </ol>
+        </nav>
+
+        <article class="detalle">
+            <div class="detalle__foto">
+                <img class="imagen-detalle"
+                    src="img/firenze.jpg"
+                    alt="Bandolera Firenze de cuero">
+            </div>
+
+            <div class="detalle__info">
+                <h1>Bandolera Firenze</h1>
+                <p class="detalle__tipo">Bandolera / crossbody</p>
+                <p class="detalle__precio">$52.000</p>
+                <p class="detalle__descripcion">Versión chica de la Roma, pensada para salir y volver sin cargar de más. El cuerpo es más angosto y la correa más corta, de 65 a 110 cm. Tiene un compartimento con cierre cremallera y un bolsillo interno sin cerrar para las cosas que usás todo el tiempo.</p>
+
+                <h2 class="detalle__subtitulo">Ficha del producto</h2>
+                <dl class="ficha">
+                    <div>
+                        <dt>Código</dt>
+                        <dd>MM-1043</dd>
+                    </div>
+                    <div>
+                        <dt>Tipo</dt>
+                        <dd>Bandolera / crossbody</dd>
+                    </div>
+                    <div>
+                        <dt>Medidas (alto × largo × fondo)</dt>
+                        <dd>18 cm × 24 cm × 9 cm</dd>
+                    </div>
+                    <div>
+                        <dt>Largo de correa</dt>
+                        <dd>Regulable de 65 a 110 cm</dd>
+                    </div>
+                    <div>
+                        <dt>Material</dt>
+                        <dd>Cuero vacuno curtido vegetal</dd>
+                    </div>
+                    <div>
+                        <dt>Forro</dt>
+                        <dd>Algodón</dd>
+                    </div>
+                    <div>
+                        <dt>Presentada en</dt>
+                        <dd>Marzo de 2026</dd>
+                    </div>
+                    <div>
+                        <dt>Disponibilidad</dt>
+                        <dd>Disponible</dd>
+                    </div>
+                </dl>
+
+                <h2 class="detalle__subtitulo">Cuidados</h2>
+                <ul class="cuidados">
+                    <li>El forro de algodón se lava a mano con jabón neutro.</li>
+                    <li>No lo lleves al lavadero: el cuero no se moja bien.</li>
+                    <li>Secá siempre con un trapo, sin fuente de calor.</li>
+                </ul>
+            </div>
+        </article>
+
+        <!--
+            El botón manda a carrito.html con la cantidad elegida.
+            Para que de verdad sume el producto al carrito hay que leer estos
+            parámetros con JS (o con un servidor); por ahora solo navega.
+        -->
+        <section class="comprar" aria-labelledby="titulo-comprar">
+            <h2 id="titulo-comprar">Agregar al carrito</h2>
+            <form id="form-agregar" method="get" action="carrito.html">
+                <p>
+                    <label for="cantidad">Cantidad</label>
+                    <input type="number" id="cantidad" name="cantidad" min="1" max="5" value="1">
+                    <input type="hidden" name="producto" value="MM-1043">
+                </p>
+                <button type="submit">Agregar al carrito</button>
+            </form>
+        </section>
+
+        <section class="relacionados" aria-labelledby="titulo-relacionados">
+            <h2 id="titulo-relacionados">También te puede gustar</h2>
+            <ul class="productos productos--chico">
+                    <li>
+                        <article class="producto">
+                            <figure class="producto__imagen">
+                                <img class="imagen-producto"
+                                    src="img/roma.jpg"
+                                    alt="Bandolera Roma de cuero">
+                            </figure>
+                            <h3 class="producto__nombre">
+                                <a href="producto-roma.html">Bandolera Roma</a>
+                            </h3>
+                            <p class="producto__tipo">Bandolera / crossbody</p>
+                            <p class="producto__precio">$45.000</p>
+                        </article>
+                    </li>
+                    <li>
+                        <article class="producto">
+                            <figure class="producto__imagen">
+                                <img class="imagen-producto"
+                                    src="img/amsterdam.jpg"
+                                    alt="Cartera de mano Amsterdam de cuero">
+                            </figure>
+                            <h3 class="producto__nombre">
+                                <a href="producto-amsterdam.html">Cartera de mano Amsterdam</a>
+                            </h3>
+                            <p class="producto__tipo">De mano</p>
+                            <p class="producto__precio">$38.000</p>
+                        </article>
+                    </li>
+                    <li>
+                        <article class="producto">
+                            <figure class="producto__imagen">
+                                <img class="imagen-producto"
+                                    src="img/milan.jpg"
+                                    alt="Monedero Milan de cuero">
+                            </figure>
+                            <h3 class="producto__nombre">
+                                <a href="producto-milan.html">Monedero Milan</a>
+                            </h3>
+                            <p class="producto__tipo">Monederos</p>
+                            <p class="producto__precio">$18.000</p>
+                        </article>
+                    </li>
+            </ul>
+        </section>
+    </main>
+
+    <!-- ==================== PIE DE PAGINA ==================== -->
+    <footer class="site-footer">
+
+        <section class="site-footer__contacto" aria-labelledby="titulo-contacto">
+            <h2 id="titulo-contacto">Contacto</h2>
+            <address>
+                <p>miu miu · Taller en Zapatería 1234, Rosario, Santa Fe</p>
+                <p><a href="tel:+54341000000">341 000-0000</a></p>
+                <p><a href="mailto:hola@miumiu.com.ar">hola@miumiu.com.ar</a></p>
+            </address>
+        </section>
+
+        <nav class="site-footer__links" aria-label="Enlaces del pie de página">
+            <h2>Información</h2>
+            <ul>
+                <li><a href="contacto.html">Sobre nosotros</a></li>
+                <li><a href="index.html#catalogo">Guía de medidas</a></li>
+                <li><a href="contacto.html">Envíos y devoluciones</a></li>
+                <li><a href="contacto.html">Preguntas frecuentes</a></li>
+            </ul>
+        </nav>
+
+        <form class="site-footer__newsletter" aria-label="Suscripción al newsletter">
+            <h2>Novedades</h2>
+            <p>
+                <label for="email-newsletter">Tu correo electrónico</label>
+                <input type="email" id="email-newsletter" name="email" placeholder="nombre@correo.com" autocomplete="email" required>
+            </p>
+            <button type="submit">Suscribirme</button>
+        </form>
+
+        <nav class="site-footer__redes" aria-label="Redes sociales">
+            <h2>Seguinos</h2>
+            <ul>
+                <li><a href="https://instagram.com/miumiu" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+                <li><a href="https://x.com/miumiu" target="_blank" rel="noopener noreferrer">X (Twitter)</a></li>
+            </ul>
+        </nav>
+
+        <p class="site-footer__legal">&copy; 2026 miu miu. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js" defer></script>
+
+</body>
+</html>
