@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cartera de mano Amsterdam (De mano) en Cuero vacuno curtido vegetal repujado. Medidas: 21 cm × 28 cm × 12 cm. $38.000. Envíos a todo el país desde miu miu.">
+    <title>miu miu | Cartera de mano Amsterdam</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ==================== ENCABEZADO ==================== -->
+    <header class="site-header">
+        <p class="site-header__marca">
+            <a href="index.html" aria-label="miu miu, ir al inicio">miu miu</a>
+        </p>
+
+        <nav class="site-header__nav" aria-label="Navegación principal">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="index.html#catalogo">Catálogo</a></li>
+                <li><a href="carrito.html">Carrito</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+
+        <!-- role="search" le avisa al lector de pantalla que este formulario es un buscador -->
+        <form class="site-header__buscador" role="search" method="get" action="index.html#catalogo" aria-label="Buscar carteras">
+            <label for="buscar">Buscar carteras</label>
+            <input type="search" id="buscar" name="q" placeholder="Ej: bandolera de cuero" autocomplete="off">
+            <button type="submit">Buscar</button>
+        </form>
+    </header>
+
+    <!-- ==================== CONTENIDO PRINCIPAL ==================== -->
+    <main>
+
+        <nav class="miga" aria-label="Ruta de navegación">
+            <ol>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="index.html#catalogo">Catálogo</a></li>
+                <li aria-current="page">Cartera de mano Amsterdam</li>
+            </ol>
+        </nav>
+
+        <article class="detalle">
+            <div class="detalle__foto">
+                <img class="imagen-detalle"
+                    src="img/amsterdam.jpg"
+                    alt="Cartera de mano Amsterdam de cuero">
+            </div>
+
+            <div class="detalle__info">
+                <h1>Cartera de mano Amsterdam</h1>
+                <p class="detalle__tipo">De mano</p>
+                <p class="detalle__precio">$38.000</p>
+                <p class="detalle__descripcion">Con armazón rígido en el interior, así que la cartera se mantiene parada sola sobre la mesa. El cuero viene repujado a mano, por eso cada pieza tiene un dibujo levemente distinto. Cierra con un broche metálico y adentro tiene tres ranuras para tarjetas.</p>
+
+                <h2 class="detalle__subtitulo">Ficha del producto</h2>
+                <dl class="ficha">
+                    <div>
+                        <dt>Código</dt>
+                        <dd>MM-1044</dd>
+                    </div>
+                    <div>
+                        <dt>Tipo</dt>
+                        <dd>De mano</dd>
+                    </div>
+                    <div>
+                        <dt>Medidas (alto × largo × fondo)</dt>
+                        <dd>21 cm × 28 cm × 12 cm</dd>
+                    </div>
+                    <div>
+                        <dt>Material</dt>
+                        <dd>Cuero vacuno curtido vegetal repujado</dd>
+                    </div>
+                    <div>
+                        <dt>Forro</dt>
+                        <dd>Microfibra</dd>
+                    </div>
+                    <div>
+                        <dt>Presentada en</dt>
+                        <dd>Abril de 2026</dd>
+                    </div>
+                    <div>
+                        <dt>Disponibilidad</dt>
+                        <dd>Disponible</dd>
+                    </div>
+                </dl>
+
+                <h2 class="detalle__subtitulo">Cuidados</h2>
+                <ul class="cuidados">
+                    <li>El repujado es delicado: no lo aplastes contra superficies duras.</li>
+                    <li>Si aparece una marca, pasale un paño apenas húmedo y deja secar solo.</li>
+                </ul>
+            </div>
+        </article>
+
+        <!--
+            El botón manda a carrito.html con la cantidad elegida.
+            Para que de verdad sume el producto al carrito hay que leer estos
+            parámetros con JS (o con un servidor); por ahora solo navega.
+        -->
+        <section class="comprar" aria-labelledby="titulo-comprar">
+            <h2 id="titulo-comprar">Agregar al carrito</h2>
+            <form id="form-agregar" method="get" action="carrito.html">
+                <p>
+                    <label for="cantidad">Cantidad</label>
+                    <input type="number" id="cantidad" name="cantidad" min="1" max="5" value="1">
+                    <input type="hidden" name="producto" value="MM-1044">
+                </p>
+                <button type="submit">Agregar al carrito</button>
+            </form>
+        </section>
+
+        <section class="relacionados" aria-labelledby="titulo-relacionados">
+            <h2 id="titulo-relacionados">También te puede gustar</h2>
+            <ul class="productos productos--chico">
+                    <li>
+                        <article class="producto">
+                            <figure class="producto__imagen">
+                                <img class="imagen-producto"
+                                    src="img/verona.jpg"
+                                    alt="Clutch Verona de cuero">
+                            </figure>
+                            <h3 class="producto__nombre">
+                                <a href="producto-verona.html">Clutch Verona</a>
+                            </h3>
+                            <p class="producto__tipo">De mano</p>
+                            <p class="producto__precio">$33.500</p>
+                        </article>
+                    </li>
+                    <li>
+                        <article class="producto">
+                            <figure class="producto__imagen">
+                                <img class="imagen-producto"
+                                    src="img/firenze.jpg"
+                                    alt="Bandolera Firenze de cuero">
+                            </figure>
+                            <h3 class="producto__nombre">
+                                <a href="producto-firenze.html">Bandolera Firenze</a>
+                            </h3>
+                            <p class="producto__tipo">Bandolera / crossbody</p>
+                            <p class="producto__precio">$52.000</p>
+                        </article>
+                    </li>
+                    <li>
+                        <article class="producto">
+                            <figure class="producto__imagen">
+                                <img class="imagen-producto"
+                                    src="img/sydney.jpg"
+                                    alt="Cartera de viaje Sydney de cuero">
+                            </figure>
+                            <h3 class="producto__nombre">
+                                <a href="producto-sydney.html">Cartera de viaje Sydney</a>
+                            </h3>
+                            <p class="producto__tipo">De viaje / weekend</p>
+                            <p class="producto__precio">$89.000</p>
+                        </article>
+                    </li>
+            </ul>
+        </section>
+    </main>
+
+    <!-- ==================== PIE DE PAGINA ==================== -->
+    <footer class="site-footer">
+
+        <section class="site-footer__contacto" aria-labelledby="titulo-contacto">
+            <h2 id="titulo-contacto">Contacto</h2>
+            <address>
+                <p>miu miu · Taller en Zapatería 1234, Rosario, Santa Fe</p>
+                <p><a href="tel:+54341000000">341 000-0000</a></p>
+                <p><a href="mailto:hola@miumiu.com.ar">hola@miumiu.com.ar</a></p>
+            </address>
+        </section>
+
+        <nav class="site-footer__links" aria-label="Enlaces del pie de página">
+            <h2>Información</h2>
+            <ul>
+                <li><a href="contacto.html">Sobre nosotros</a></li>
+                <li><a href="index.html#catalogo">Guía de medidas</a></li>
+                <li><a href="contacto.html">Envíos y devoluciones</a></li>
+                <li><a href="contacto.html">Preguntas frecuentes</a></li>
+            </ul>
+        </nav>
+
+        <form class="site-footer__newsletter" aria-label="Suscripción al newsletter">
+            <h2>Novedades</h2>
+            <p>
+                <label for="email-newsletter">Tu correo electrónico</label>
+                <input type="email" id="email-newsletter" name="email" placeholder="nombre@correo.com" autocomplete="email" required>
+            </p>
+            <button type="submit">Suscribirme</button>
+        </form>
+
+        <nav class="site-footer__redes" aria-label="Redes sociales">
+            <h2>Seguinos</h2>
+            <ul>
+                <li><a href="https://instagram.com/miumiu" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+                <li><a href="https://x.com/miumiu" target="_blank" rel="noopener noreferrer">X (Twitter)</a></li>
+            </ul>
+        </nav>
+
+        <p class="site-footer__legal">&copy; 2026 miu miu. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js" defer></script>
+
+</body>
+</html>

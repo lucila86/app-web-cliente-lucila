@@ -6,11 +6,8 @@
     <meta name="description" content="Carrito de compra de miu miu: revisá los productos que agregaste, ajustá las cantidades y finalizá tu compra.">
     <title>miu miu | Tu carrito</title>
 
-    <!--
-        Pantalla del carrito. Por ahora es HTML puro, sin estilos y sin JS.
-        El CSS entra más adelante en style.css:
-        <link rel="stylesheet" href="style.css">
-    -->
+    <!-- Maquetado en style.css -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -43,21 +40,21 @@
         <h1 id="titulo-pagina">Tu carrito</h1>
 
         <!--
-            Estructura de la pantalla:
-            - form > table con los productos agregados
-            - aside con el resumen del pedido y el botón para finalizar la compra
-
-            Los productos del carrito están fijos en el HTML, igual que los del
-            catálogo. Por ahora la cantidad se cambia con un <select> y el
-            "quitar" es un link con parámetro (?quitar=roma); ambos necesitan
-            JS o un servidor para que dejen de ser estáticos.
+            La tabla la arma script.js a partir de lo que hay guardado en
+            localStorage: la primera vez arranca con CARRITO_INICIAL y después
+            conserva lo que vayas agregando. Por eso el <tbody> está vacío y
+            las filas las genera el script.
         -->
         <div class="carrito">
 
             <!-- ---------- PRODUCTOS DEL CARRITO ---------- -->
             <form class="carrito__form" method="get" action="carrito.html" aria-label="Actualizar los productos del carrito">
+                <noscript>
+                    <p class="carrito__aviso">El carrito se arma con JavaScript. Activalo para ver y modificar los productos.</p>
+                </noscript>
+
                 <table class="carrito__tabla">
-                    <caption>Productos en tu carrito: 4 productos, 7 unidades</caption>
+                    <caption id="carrito-conteo">Productos en tu carrito</caption>
                     <thead>
                         <tr>
                             <th scope="col">Producto</th>
@@ -67,101 +64,14 @@
                             <th scope="col">Quitar</th>
                         </tr>
                     </thead>
-                    <tbody>
-
-                        <tr>
-                            <th scope="row">
-                                <a href="producto.html?id=roma">Bandolera Roma</a><br>
-                                <span>Bandolera / crossbody · Cuero Vacuno</span>
-                            </th>
-                            <td>$45.000</td>
-                            <td>
-                                <select id="cant-roma" name="cant-roma" aria-label="Cantidad de Bandolera Roma">
-                                    <option value="1">1</option>
-                                    <option value="2" selected>2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                </select>
-                            </td>
-                            <td>$90.000</td>
-                            <td>
-                                <a href="carrito.html?quitar=roma" aria-label="Quitar Bandolera Roma del carrito">Quitar</a>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">
-                                <a href="producto.html?id=verona">Clutch Verona</a><br>
-                                <span>De mano · Cuero Vacuno</span>
-                            </th>
-                            <td>$33.500</td>
-                            <td>
-                                <select id="cant-verona" name="cant-verona" aria-label="Cantidad de Clutch Verona">
-                                    <option value="1" selected>1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                </select>
-                            </td>
-                            <td>$33.500</td>
-                            <td>
-                                <a href="carrito.html?quitar=verona" aria-label="Quitar Clutch Verona del carrito">Quitar</a>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">
-                                <a href="producto.html?id=milan">Monedero Milan</a><br>
-                                <span>Monederos · Cuero Vacuno</span>
-                            </th>
-                            <td>$18.000</td>
-                            <td>
-                                <select id="cant-milan" name="cant-milan" aria-label="Cantidad de Monedero Milan">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3" selected>3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                </select>
-                            </td>
-                            <td>$54.000</td>
-                            <td>
-                                <a href="carrito.html?quitar=milan" aria-label="Quitar Monedero Milan del carrito">Quitar</a>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">
-                                <a href="producto.html?id=toronto">Weekend bag Toronto</a><br>
-                                <span>De viaje / weekend · Cuero Vacuno</span>
-                            </th>
-                            <td>$95.000</td>
-                            <td>
-                                <select id="cant-toronto" name="cant-toronto" aria-label="Cantidad de Weekend bag Toronto">
-                                    <option value="1" selected>1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                </select>
-                            </td>
-                            <td>$95.000</td>
-                            <td>
-                                <a href="carrito.html?quitar=toronto" aria-label="Quitar Weekend bag Toronto del carrito">Quitar</a>
-                            </td>
-                        </tr>
-
+                    <tbody id="carrito-items">
                     </tbody>
                 </table>
 
                 <p>
-                    <button type="submit">Actualizar carrito</button>
-                    <a href="carrito.html?vaciar=1">Vaciar carrito</a>
+                    <button type="button" id="vaciar-carrito">Vaciar carrito</button>
+                    <a href="index.html#catalogo">Seguir comprando</a>
                 </p>
-
-                <p><a href="index.html#catalogo">Seguir comprando</a></p>
             </form>
 
             <!-- ---------- RESUMEN Y FINALIZACIÓN DE COMPRA ---------- -->
@@ -173,7 +83,7 @@
                     que todavía no existe (es el punto 3 de Predictions.md). Sin un
                     servidor o sin JS, el formulario simplemente recarga la página.
                 -->
-                <form class="carrito__checkout" method="post" action="checkout.html" aria-labelledby="titulo-resumen">
+                <form class="carrito__checkout" method="post" action="checkout.html" aria-labelledby="titulo-resumen" id="carrito__checkout">
 
                     <fieldset>
                         <legend>Entrega</legend>
@@ -194,20 +104,20 @@
 
                     <dl class="resumen__totales">
                         <div>
-                            <dt>Subtotal (7 unidades)</dt>
-                            <dd>$272.500</dd>
+                            <dt>Subtotal (<span id="total-unidades">0</span> unidades)</dt>
+                            <dd id="total-subtotal">$0</dd>
                         </div>
                         <div>
                             <dt>Descuento PRIMERA10</dt>
-                            <dd>−$27.250</dd>
+                            <dd id="total-descuento">—</dd>
                         </div>
                         <div>
                             <dt>Envío</dt>
-                            <dd>$8.500</dd>
+                            <dd id="total-envio">$0</dd>
                         </div>
                         <div>
                             <dt>Total</dt>
-                            <dd>$253.750</dd>
+                            <dd id="total-total">$0</dd>
                         </div>
                     </dl>
 
@@ -235,8 +145,8 @@
             <h2>Información</h2>
             <ul>
                 <li><a href="contacto.html">Sobre nosotros</a></li>
-                <li><a href="producto.html">Guía de talles</a></li>
-                <li><a href="producto.html">Envíos y devoluciones</a></li>
+                <li><a href="index.html#catalogo">Gu&iacute;a de medidas</a></li>
+                <li><a href="contacto.html">Env&iacute;os y devoluciones</a></li>
                 <li><a href="contacto.html">Preguntas frecuentes</a></li>
             </ul>
         </nav>
@@ -260,6 +170,8 @@
 
         <p class="site-footer__legal">&copy; 2026 miu miu. Todos los derechos reservados.</p>
     </footer>
+
+    <script src="script.js" defer></script>
 
 </body>
 </html>

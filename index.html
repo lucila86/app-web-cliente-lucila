@@ -6,11 +6,8 @@
     <meta name="description" content="miu miu | Carteras de cuero genuino hechas a mano: bandoleras, carteras de mano, monederos y carteras de viaje.">
     <title>miu miu | Carteras de cuero</title>
 
-    <!--
-        Esta es la estructura base, todavia sin estilos.
-        El CSS entra mas adelante en style.css (punto 4 de Predictions.md):
-        <link rel="stylesheet" href="style.css">
-    -->
+    <!-- Maquetado en style.css (punto 4 de Predictions.md) -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -53,75 +50,83 @@
         <!-- Catalogo: filtros a la izquierda, productos al centro -->
         <div class="catalogo">
 
-            <!-- ---------- SECCION DE FILTROS ---------- -->
+            <!--
+                Los filtros van dentro de un <details>: arrancan abiertos en
+                pantallas grandes y script.js los cierra solo en las chicas, para
+                que no tapen los productos antes de llegar a verlos.
+            -->
             <aside class="filtros" aria-labelledby="titulo-filtros">
-                <h2 id="titulo-filtros">Filtrar carteras</h2>
+                <details class="filtros__grupo" open>
+                    <summary class="filtros__resumen">
+                        <h2 id="titulo-filtros">Filtrar carteras</h2>
+                    </summary>
 
-                <form class="filtros__form" method="get" action="#catalogo" aria-labelledby="titulo-filtros">
+                    <form class="filtros__form" method="get" action="#catalogo" aria-labelledby="titulo-filtros">
 
-                    <fieldset>
-                        <legend>Tipo de cartera</legend>
-                        <ul>
-                            <li>
-                                <input type="checkbox" id="tipo-bandolera" name="tipo" value="bandolera" checked>
-                                <label for="tipo-bandolera">Bandolera / crossbody</label>
-                            </li>
-                            <li>
-                                <input type="checkbox" id="tipo-mano" name="tipo" value="mano" checked>
-                                <label for="tipo-mano">De mano</label>
-                            </li>
-                            <li>
-                                <input type="checkbox" id="tipo-monederos" name="tipo" value="monederos" checked>
-                                <label for="tipo-monederos">Monederos</label>
-                            </li>
-                            <li>
-                                <input type="checkbox" id="tipo-viaje" name="tipo" value="viaje" checked>
-                                <label for="tipo-viaje">De viaje / weekend</label>
-                            </li>
-                        </ul>
-                    </fieldset>
+                        <fieldset>
+                            <legend>Tipo de cartera</legend>
+                            <ul>
+                                <li>
+                                    <input type="checkbox" id="tipo-bandolera" name="tipo" value="bandolera" checked>
+                                    <label for="tipo-bandolera">Bandolera / crossbody</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="tipo-mano" name="tipo" value="mano" checked>
+                                    <label for="tipo-mano">De mano</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="tipo-monederos" name="tipo" value="monederos" checked>
+                                    <label for="tipo-monederos">Monederos</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="tipo-viaje" name="tipo" value="viaje" checked>
+                                    <label for="tipo-viaje">De viaje / weekend</label>
+                                </li>
+                            </ul>
+                        </fieldset>
 
-                    <fieldset>
-                        <legend>Precio</legend>
+                        <fieldset>
+                            <legend>Precio</legend>
+                            <p>
+                                <label for="precio-min">Precio mínimo</label>
+                                <input type="number" id="precio-min" name="precio-min" min="0" step="1000" placeholder="Ej: 20000">
+                            </p>
+                            <p>
+                                <label for="precio-max">Precio máximo</label>
+                                <input type="number" id="precio-max" name="precio-max" min="0" step="1000" placeholder="Ej: 90000">
+                            </p>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Material</legend>
+                            <p>
+                                <input type="radio" id="material-todos" name="material" value="todos" checked>
+                                <label for="material-todos">Todos</label>
+                            </p>
+                            <p>
+                                <input type="radio" id="material-cuero" name="material" value="cuero">
+                                <label for="material-cuero">Cuero genuino</label>
+                            </p>
+                            <p>
+                                <input type="radio" id="material-vegano" name="material" value="vegano">
+                                <label for="material-vegano">Vegano</label>
+                            </p>
+                        </fieldset>
+
                         <p>
-                            <label for="precio-min">Precio mínimo</label>
-                            <input type="number" id="precio-min" name="precio-min" min="0" step="1000" placeholder="Ej: 20000">
+                            <label for="orden">Ordenar por</label>
+                            <select id="orden" name="orden">
+                                <option value="relevancia">Relevancia</option>
+                                <option value="precio-asc">Precio: de menor a mayor</option>
+                                <option value="precio-desc">Precio: de mayor a menor</option>
+                                <option value="nombre">Nombre (A - Z)</option>
+                            </select>
                         </p>
-                        <p>
-                            <label for="precio-max">Precio máximo</label>
-                            <input type="number" id="precio-max" name="precio-max" min="0" step="1000" placeholder="Ej: 90000">
-                        </p>
-                    </fieldset>
 
-                    <fieldset>
-                        <legend>Material</legend>
-                        <p>
-                            <input type="radio" id="material-todos" name="material" value="todos" checked>
-                            <label for="material-todos">Todos</label>
-                        </p>
-                        <p>
-                            <input type="radio" id="material-cuero" name="material" value="cuero">
-                            <label for="material-cuero">Cuero genuino</label>
-                        </p>
-                        <p>
-                            <input type="radio" id="material-vegano" name="material" value="vegano">
-                            <label for="material-vegano">Vegano</label>
-                        </p>
-                    </fieldset>
-
-                    <p>
-                        <label for="orden">Ordenar por</label>
-                        <select id="orden" name="orden">
-                            <option value="relevancia">Relevancia</option>
-                            <option value="precio-asc">Precio: de menor a mayor</option>
-                            <option value="precio-desc">Precio: de mayor a menor</option>
-                            <option value="nombre">Nombre (A - Z)</option>
-                        </select>
-                    </p>
-
-                    <button type="submit">Aplicar filtros</button>
-                    <button type="reset">Limpiar filtros</button>
-                </form>
+                        <button type="submit">Aplicar filtros</button>
+                        <button type="reset">Limpiar filtros</button>
+                    </form>
+                </details>
             </aside>
 
             <!-- ---------- PRODUCTOS ---------- -->
@@ -147,14 +152,13 @@
                     <!-- Bandolera / crossbody -->
                     <li>
                         <article class="producto">
-                            <!-- Cuando tengas las fotos, reemplazar el div de abajo por:
-                                 <img src="img/bandolera-roma.jpg" alt="Bandolera Roma de cuero café"> -->
                             <figure class="producto__imagen">
-                                <div class="producto__placeholder" role="img"
-                                    aria-label="Foto de la bandolera Roma de cuero color café"></div>
+                                <img class="imagen-producto"
+                                    src="img/roma.jpg"
+                                    alt="Bandolera Roma de cuero">
                             </figure>
                             <h3 class="producto__nombre">
-                                <a href="producto.html?id=roma">Bandolera Roma</a>
+                                <a href="producto-roma.html">Bandolera Roma</a>
                             </h3>
                             <p class="producto__tipo">Bandolera / crossbody</p>
                             <p class="producto__precio">$45.000</p>
@@ -165,11 +169,12 @@
                     <li>
                         <article class="producto">
                             <figure class="producto__imagen">
-                                <div class="producto__placeholder" role="img"
-                                    aria-label="Foto de la bandolera Firenze de cuero color negro"></div>
+                                <img class="imagen-producto"
+                                    src="img/firenze.jpg"
+                                    alt="Bandolera Firenze de cuero">
                             </figure>
                             <h3 class="producto__nombre">
-                                <a href="producto.html?id=firenze">Bandolera Firenze</a>
+                                <a href="producto-firenze.html">Bandolera Firenze</a>
                             </h3>
                             <p class="producto__tipo">Bandolera / crossbody</p>
                             <p class="producto__precio">$52.000</p>
@@ -181,11 +186,12 @@
                     <li>
                         <article class="producto">
                             <figure class="producto__imagen">
-                                <div class="producto__placeholder" role="img"
-                                    aria-label="Foto de la cartera de mano Amsterdam de color terracota"></div>
+                                <img class="imagen-producto"
+                                    src="img/amsterdam.jpg"
+                                    alt="Cartera de mano Amsterdam de cuero">
                             </figure>
                             <h3 class="producto__nombre">
-                                <a href="producto.html?id=amsterdam">Cartera de mano Amsterdam</a>
+                                <a href="producto-amsterdam.html">Cartera de mano Amsterdam</a>
                             </h3>
                             <p class="producto__tipo">De mano</p>
                             <p class="producto__precio">$38.000</p>
@@ -196,11 +202,12 @@
                     <li>
                         <article class="producto">
                             <figure class="producto__imagen">
-                                <div class="producto__placeholder" role="img"
-                                    aria-label="Foto de la clutch Verona de cuero color vino"></div>
+                                <img class="imagen-producto"
+                                    src="img/verona.jpg"
+                                    alt="Clutch Verona de cuero">
                             </figure>
                             <h3 class="producto__nombre">
-                                <a href="producto.html?id=verona">Clutch Verona</a>
+                                <a href="producto-verona.html">Clutch Verona</a>
                             </h3>
                             <p class="producto__tipo">De mano</p>
                             <p class="producto__precio">$33.500</p>
@@ -212,11 +219,12 @@
                     <li>
                         <article class="producto">
                             <figure class="producto__imagen">
-                                <div class="producto__placeholder" role="img"
-                                    aria-label="Foto del monedero Milan de cuero color avellana"></div>
+                                <img class="imagen-producto"
+                                    src="img/milan.jpg"
+                                    alt="Monedero Milan de cuero">
                             </figure>
                             <h3 class="producto__nombre">
-                                <a href="producto.html?id=milan">Monedero Milan</a>
+                                <a href="producto-milan.html">Monedero Milan</a>
                             </h3>
                             <p class="producto__tipo">Monederos</p>
                             <p class="producto__precio">$18.000</p>
@@ -227,11 +235,12 @@
                     <li>
                         <article class="producto">
                             <figure class="producto__imagen">
-                                <div class="producto__placeholder" role="img"
-                                    aria-label="Foto del monedero Osaka en material vegano color verde oliva"></div>
+                                <img class="imagen-producto"
+                                    src="img/osaka.jpg"
+                                    alt="Monedero Osaka de material vegano">
                             </figure>
                             <h3 class="producto__nombre">
-                                <a href="producto.html?id=osaka">Monedero Osaka</a>
+                                <a href="producto-osaka.html">Monedero Osaka</a>
                             </h3>
                             <p class="producto__tipo">Monederos</p>
                             <p class="producto__precio">$21.500</p>
@@ -243,11 +252,12 @@
                     <li>
                         <article class="producto">
                             <figure class="producto__imagen">
-                                <div class="producto__placeholder" role="img"
-                                    aria-label="Foto de la cartera de viaje Sydney de cuero color caqui"></div>
+                                <img class="imagen-producto"
+                                    src="img/sydney.jpg"
+                                    alt="Cartera de viaje Sydney de cuero">
                             </figure>
                             <h3 class="producto__nombre">
-                                <a href="producto.html?id=sydney">Cartera de viaje Sydney</a>
+                                <a href="producto-sydney.html">Cartera de viaje Sydney</a>
                             </h3>
                             <p class="producto__tipo">De viaje / weekend</p>
                             <p class="producto__precio">$89.000</p>
@@ -258,11 +268,12 @@
                     <li>
                         <article class="producto">
                             <figure class="producto__imagen">
-                                <div class="producto__placeholder" role="img"
-                                    aria-label="Foto del weekend bag Toronto de color negro"></div>
+                                <img class="imagen-producto"
+                                    src="img/toronto.jpg"
+                                    alt="Weekend bag Toronto de cuero">
                             </figure>
                             <h3 class="producto__nombre">
-                                <a href="producto.html?id=toronto">Weekend bag Toronto</a>
+                                <a href="producto-toronto.html">Weekend bag Toronto</a>
                             </h3>
                             <p class="producto__tipo">De viaje / weekend</p>
                             <p class="producto__precio">$95.000</p>
@@ -291,8 +302,8 @@
             <h2>Información</h2>
             <ul>
                 <li><a href="contacto.html">Sobre nosotros</a></li>
-                <li><a href="producto.html">Guía de talles</a></li>
-                <li><a href="producto.html">Envíos y devoluciones</a></li>
+                <li><a href="index.html#catalogo">Gu&iacute;a de medidas</a></li>
+                <li><a href="contacto.html">Env&iacute;os y devoluciones</a></li>
                 <li><a href="contacto.html">Preguntas frecuentes</a></li>
             </ul>
         </nav>
@@ -316,6 +327,8 @@
 
         <p class="site-footer__legal">&copy; 2026 miu miu. Todos los derechos reservados.</p>
     </footer>
+
+    <script src="script.js" defer></script>
 
 </body>
 </html>
