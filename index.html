@@ -129,6 +129,19 @@
                 <h2 id="titulo-catalogo">Nuestras carteras</h2>
                 <p class="catalogo__conteo">8 carteras para mostrar</p>
 
+                <!--
+                    Los productos estan fijos en el HTML por ahora, asi que cada link
+                    lleva el id del producto que quiere ver: producto.html?id=roma
+
+                    El link va en el h3 a proposito: es un solo link por producto y el
+                    nombre de la cartera es un texto de link claro (bueno para lectores
+                    de pantalla y para buscadores).
+
+                    Cuando tengas style.css, la tarjeta entera se vuelve clickeable sin
+                    agregar links duplicados, con un "stretched link" desde CSS:
+                    .producto__nombre a::after { content: ""; position: absolute; inset: 0; }
+                    .producto { position: relative; }
+                -->
                 <ul class="productos">
 
                     <!-- Bandolera / crossbody -->
@@ -140,11 +153,12 @@
                                 <div class="producto__placeholder" role="img"
                                     aria-label="Foto de la bandolera Roma de cuero color café"></div>
                             </figure>
-                            <h3 class="producto__nombre">Bandolera Roma</h3>
+                            <h3 class="producto__nombre">
+                                <a href="producto.html?id=roma">Bandolera Roma</a>
+                            </h3>
                             <p class="producto__tipo">Bandolera / crossbody</p>
                             <p class="producto__precio">$45.000</p>
                             <p class="producto__descripcion">Correa regulable y compartimentos con cierre cremallera. Cuero Vacuno.</p>
-                            <a href="producto.html">Ver detalle</a>
                         </article>
                     </li>
 
@@ -154,11 +168,12 @@
                                 <div class="producto__placeholder" role="img"
                                     aria-label="Foto de la bandolera Firenze de cuero color negro"></div>
                             </figure>
-                            <h3 class="producto__nombre">Bandolera Firenze</h3>
+                            <h3 class="producto__nombre">
+                                <a href="producto.html?id=firenze">Bandolera Firenze</a>
+                            </h3>
                             <p class="producto__tipo">Bandolera / crossbody</p>
                             <p class="producto__precio">$52.000</p>
                             <p class="producto__descripcion">Formato compacto, ideal para salir. Cuero Vacuno con forro de algodón.</p>
-                            <a href="producto.html">Ver detalle</a>
                         </article>
                     </li>
 
@@ -169,11 +184,12 @@
                                 <div class="producto__placeholder" role="img"
                                     aria-label="Foto de la cartera de mano Amsterdam de color terracota"></div>
                             </figure>
-                            <h3 class="producto__nombre">Cartera de mano Amsterdam</h3>
+                            <h3 class="producto__nombre">
+                                <a href="producto.html?id=amsterdam">Cartera de mano Amsterdam</a>
+                            </h3>
                             <p class="producto__tipo">De mano</p>
                             <p class="producto__precio">$38.000</p>
                             <p class="producto__descripcion">Estructura rígida que se mantiene de pie. Cuero Vacuno repujado.</p>
-                            <a href="producto.html">Ver detalle</a>
                         </article>
                     </li>
 
@@ -183,11 +199,12 @@
                                 <div class="producto__placeholder" role="img"
                                     aria-label="Foto de la clutch Verona de cuero color vino"></div>
                             </figure>
-                            <h3 class="producto__nombre">Clutch Verona</h3>
+                            <h3 class="producto__nombre">
+                                <a href="producto.html?id=verona">Clutch Verona</a>
+                            </h3>
                             <p class="producto__tipo">De mano</p>
                             <p class="producto__precio">$33.500</p>
-                            <p class="producto__descripcion">Para la noche o para llevar lo justo. Cierre magnético y bolsillo para bills.</p>
-                            <a href="producto.html">Ver detalle</a>
+                            <p class="producto__descripcion">Para la noche o para llevar lo justo. Cierre magnético y bolsillo para billetes.</p>
                         </article>
                     </li>
 
@@ -198,11 +215,12 @@
                                 <div class="producto__placeholder" role="img"
                                     aria-label="Foto del monedero Milan de cuero color avellana"></div>
                             </figure>
-                            <h3 class="producto__nombre">Monedero Milan</h3>
+                            <h3 class="producto__nombre">
+                                <a href="producto.html?id=milan">Monedero Milan</a>
+                            </h3>
                             <p class="producto__tipo">Monederos</p>
                             <p class="producto__precio">$18.000</p>
                             <p class="producto__descripcion">Para billetes, monedas y tarjetas. Compacto, con cierre cremallera.</p>
-                            <a href="producto.html">Ver detalle</a>
                         </article>
                     </li>
 
@@ -212,11 +230,12 @@
                                 <div class="producto__placeholder" role="img"
                                     aria-label="Foto del monedero Osaka en material vegano color verde oliva"></div>
                             </figure>
-                            <h3 class="producto__nombre">Monedero Osaka</h3>
+                            <h3 class="producto__nombre">
+                                <a href="producto.html?id=osaka">Monedero Osaka</a>
+                            </h3>
                             <p class="producto__tipo">Monederos</p>
                             <p class="producto__precio">$21.500</p>
                             <p class="producto__descripcion">Costuras reforzadas y tres compartimentos. Material vegano impermeable.</p>
-                            <a href="producto.html">Ver detalle</a>
                         </article>
                     </li>
 
@@ -227,11 +246,12 @@
                                 <div class="producto__placeholder" role="img"
                                     aria-label="Foto de la cartera de viaje Sydney de cuero color caqui"></div>
                             </figure>
-                            <h3 class="producto__nombre">Cartera de viaje Sydney</h3>
+                            <h3 class="producto__nombre">
+                                <a href="producto.html?id=sydney">Cartera de viaje Sydney</a>
+                            </h3>
                             <p class="producto__tipo">De viaje / weekend</p>
                             <p class="producto__precio">$89.000</p>
                             <p class="producto__descripcion">Amplia y con compartimento interior cierre cremallera. Cuero Vacuno.</p>
-                            <a href="producto.html">Ver detalle</a>
                         </article>
                     </li>
 
@@ -241,11 +261,12 @@
                                 <div class="producto__placeholder" role="img"
                                     aria-label="Foto del weekend bag Toronto de color negro"></div>
                             </figure>
-                            <h3 class="producto__nombre">Weekend bag Toronto</h3>
+                            <h3 class="producto__nombre">
+                                <a href="producto.html?id=toronto">Weekend bag Toronto</a>
+                            </h3>
                             <p class="producto__tipo">De viaje / weekend</p>
                             <p class="producto__precio">$95.000</p>
                             <p class="producto__descripcion">Para un finde largo o un viaje. Dos asas y bolsillo trasero con cremallera.</p>
-                            <a href="producto.html">Ver detalle</a>
                         </article>
                     </li>
 
