@@ -132,7 +132,7 @@
             <!-- ---------- PRODUCTOS ---------- -->
             <section id="catalogo" class="catalogo__listado" aria-labelledby="titulo-catalogo">
                 <h2 id="titulo-catalogo">Nuestras carteras</h2>
-                <p class="catalogo__conteo">8 carteras para mostrar</p>
+                <p class="catalogo__conteo" aria-live="polite">8 carteras para mostrar</p>
 
                 <!--
                     Los productos estan fijos en el HTML por ahora, asi que cada link
@@ -151,7 +151,7 @@
 
                     <!-- Bandolera / crossbody -->
                     <li>
-                        <article class="producto">
+                        <article class="producto" data-tipo="bandolera" data-material="cuero">
                             <figure class="producto__imagen">
                                 <img class="imagen-producto"
                                     src="img/roma.jpg"
@@ -167,7 +167,7 @@
                     </li>
 
                     <li>
-                        <article class="producto">
+                        <article class="producto" data-tipo="bandolera" data-material="cuero">
                             <figure class="producto__imagen">
                                 <img class="imagen-producto"
                                     src="img/firenze.jpg"
@@ -184,7 +184,7 @@
 
                     <!-- De mano -->
                     <li>
-                        <article class="producto">
+                        <article class="producto" data-tipo="mano" data-material="cuero">
                             <figure class="producto__imagen">
                                 <img class="imagen-producto"
                                     src="img/amsterdam.jpg"
@@ -200,7 +200,7 @@
                     </li>
 
                     <li>
-                        <article class="producto">
+                        <article class="producto" data-tipo="mano" data-material="cuero">
                             <figure class="producto__imagen">
                                 <img class="imagen-producto"
                                     src="img/verona.jpg"
@@ -217,7 +217,7 @@
 
                     <!-- Monederos -->
                     <li>
-                        <article class="producto">
+                        <article class="producto" data-tipo="monederos" data-material="cuero">
                             <figure class="producto__imagen">
                                 <img class="imagen-producto"
                                     src="img/milan.jpg"
@@ -233,7 +233,7 @@
                     </li>
 
                     <li>
-                        <article class="producto">
+                        <article class="producto" data-tipo="monederos" data-material="vegano">
                             <figure class="producto__imagen">
                                 <img class="imagen-producto"
                                     src="img/osaka.jpg"
@@ -250,7 +250,7 @@
 
                     <!-- De viaje / weekend -->
                     <li>
-                        <article class="producto">
+                        <article class="producto" data-tipo="viaje" data-material="cuero">
                             <figure class="producto__imagen">
                                 <img class="imagen-producto"
                                     src="img/sydney.jpg"
@@ -266,7 +266,7 @@
                     </li>
 
                     <li>
-                        <article class="producto">
+                        <article class="producto" data-tipo="viaje" data-material="cuero">
                             <figure class="producto__imagen">
                                 <img class="imagen-producto"
                                     src="img/toronto.jpg"
@@ -282,6 +282,11 @@
                     </li>
 
                 </ul>
+
+                <p class="catalogo__vacio" id="catalogo-vacio" hidden>
+                    No encontramos carteras con esos filtros.
+                    <a href="index.html#catalogo">Ver todas las carteras</a>.
+                </p>
             </section>
         </div>
     </main>

@@ -342,6 +342,15 @@ button:hover {
     color: var(--marron-medio);
 }
 
+/* Aviso cuando la búsqueda no encuentra ninguna cartera. */
+.catalogo__vacio {
+    margin: 0;
+    padding: 2.5rem 1rem;
+    border: 1px dashed var(--borde);
+    text-align: center;
+    color: var(--marron-medio);
+}
+
 /* ---- productos ---- */
 
 .productos {
@@ -972,9 +981,60 @@ main > h1 + p {
     }
 }
 
+/* --------------------------------------------------------- animaciones --- */
+
+/* Entrada suave desde abajo para el hero y las tarjetas del catálogo. */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(1.5rem);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero h1,
+.hero p,
+.filtros,
+.producto,
+.detalle__foto,
+.detalle__info {
+    animation: fadeInUp .6s ease-out both;
+}
+
+/* El segundo párrafo del hero entra un instante después que el título. */
+.hero p:nth-of-type(2) {
+    animation-delay: .12s;
+}
+
+/* Las tarjetas se muestran una atrás de otra, no todas de golpe. */
+.productos li:nth-child(2) { --retraso: .08s; }
+.productos li:nth-child(3) { --retraso: .16s; }
+.productos li:nth-child(4) { --retraso: .24s; }
+.productos li:nth-child(5) { --retraso: .32s; }
+.productos li:nth-child(6) { --retraso: .40s; }
+.productos li:nth-child(7) { --retraso: .48s; }
+.productos li:nth-child(8) { --retraso: .56s; }
+
+.productos .producto {
+    animation-delay: var(--retraso, 0s);
+}
+
+/* Si el sistema pide menos movimiento, se apagan las animaciones y las
+   tarjetas quedan visibles desde el primer momento. */
 @media (prefers-reduced-motion: reduce) {
     .producto,
+    .hero h1,
+    .hero p,
+    .filtros,
+    .detalle__foto,
+    .detalle__info,
     button {
+        animation: none;
+        opacity: 1;
+        transform: none;
         transition: none;
     }
 }

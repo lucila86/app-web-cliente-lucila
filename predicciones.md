@@ -5,3 +5,5 @@
 5. Mejorar interfaz y maquetado del catalogo.
 6. Mejorar diseño movil.
 7. Agregar imágenes a los productos.
+8. Agregar @keyframes/animation a la página.
+9. Mejorar barra de busqueda y filtración de carteras.
