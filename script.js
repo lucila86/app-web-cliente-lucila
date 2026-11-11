@@ -324,7 +324,11 @@ function aplicarFiltros(animar) {
             }
         }
 
-        if (caracteristicas.tipos.indexOf(tipo) === -1) { coincide = false; }
+        // Sin ningún tipo marcado se muestran todos: marcar y desmarcar los
+        // filtros no puede dejar el catálogo vacío y la búsqueda sin efecto.
+        if (caracteristicas.tipos.length > 0 && caracteristicas.tipos.indexOf(tipo) === -1) {
+            coincide = false;
+        }
         if (caracteristicas.material !== 'todos' && material !== caracteristicas.material) {
             coincide = false;
         }
@@ -354,12 +358,23 @@ function aplicarFiltros(animar) {
 
 function initFiltros() {
     var catalogo = $('#catalogo');
-
-    // En las páginas sin catálogo el buscador navega a index.html?q=...
-    if (!catalogo) { return; }
-
     var buscador = $('#buscar');
     var formularioBusqueda = $('.site-header__buscador');
+
+    // En las páginas sin catálogo el buscador navega a index.html?q=...
+    if (!catalogo) {
+        if (formularioBusqueda && buscador) {
+            formularioBusqueda.addEventListener('submit', function (evento) {
+                evento.preventDefault();
+
+                var consulta = buscador.value.trim();
+                var destino = 'index.html' + (consulta ? '?q=' + encodeURIComponent(consulta) : '') + '#catalogo';
+                window.location.href = destino;
+            });
+        }
+        return;
+    }
+
     var formularioFiltros = $('.filtros__form');
     var lista = catalogo.querySelector('.productos');
 

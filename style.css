@@ -362,11 +362,24 @@ button:hover {
     list-style: none;
 }
 
+/* El <li> se estira hasta el alto de la fila y la tarjeta ocupa todo ese
+   alto, asi todas las tarjetas de la grilla quedan del mismo tamaño. */
+.productos li {
+    display: flex;
+}
+
+/* El display:flex de arriba pisaría el atributo hidden, que es como el JS
+   oculta las tarjetas que no coinciden con la búsqueda o con los filtros. */
+.productos li[hidden] {
+    display: none;
+}
+
 .producto {
     position: relative;              /* necesario para el link que se estira */
     display: flex;
     flex-direction: column;
     gap: .3rem;
+    width: 100%;
     padding: 1rem;
     background: var(--blanco);
     border: 1px solid var(--borde);
@@ -385,9 +398,23 @@ button:hover {
     inset: 0;
 }
 
+/* Los textos largos se cortan con puntos suspensivos ("..."). El texto
+   completo esta en la ficha del producto: como toda la tarjeta es
+   clickeable, para seguir leyendo hay que entrar al producto. */
+.producto__nombre,
+.producto__descripcion {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .producto__nombre {
     margin: .3rem 0 0;
     font-size: 1.05rem;
+    -webkit-line-clamp: 2;           /* como maximo dos lineas */
+    line-clamp: 2;
+    min-height: 2.4em;               /* reserva dos lineas: precios alineados */
 }
 
 .producto__nombre a {
@@ -418,6 +445,9 @@ button:hover {
     margin: 0;
     font-size: .9rem;
     color: var(--marron-medio);
+    -webkit-line-clamp: 3;           /* como maximo tres lineas */
+    line-clamp: 3;
+    min-height: 4.8em;               /* reserva tres lineas: tarjetas parejas */
 }
 
 /* ------------------------------------------------------ ficha producto --- */
