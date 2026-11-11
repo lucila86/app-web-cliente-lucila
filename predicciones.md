@@ -7,3 +7,4 @@
 7. Agregar imágenes a los productos.
 8. Agregar @keyframes/animation a la página.
 9. Mejorar barra de busqueda y filtración de carteras.
+10. Acoplar la busqueda con los filtros y que el tamaño de las tarjetas sea igual para todos los productos.
