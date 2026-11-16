@@ -440,6 +440,7 @@ function initFiltros() {
 // --------------------------------------------------------------- eventos ---
 
 function init() {
+    traerProductosSupabase();
     initFiltros();
 
     if (localStorage.getItem(CLAVE) === null) {
@@ -537,3 +538,19 @@ function init() {
 }
 
 document.addEventListener('DOMContentLoaded', init);
+
+
+const traerProductosSupabase = async () => {
+    const url = 'https://pokmnscawbfrpgysxjlt.supabase.co/rest/v1/Products';
+    const apiKey = 'sb_publishable_M-Zf7POy-gptIg9uPB9w5w_xSws5d-8';
+
+    const response = await fetch(url, {
+        headers: {
+            'apikey': apiKey,
+            'Authorization': `Bearer ${apiKey}`
+        }
+    });
+
+    const productos = await response.json();
+    return productos;
+};
